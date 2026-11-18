@@ -1,1 +1,6 @@
-# output-hub.github.io
+# output-hub
+
+공유용 결과물 배포 저장소. 결과물마다 폴더 하나 (`/<결과물>/index.html`).
+
+- 공개된 자료만 올린다 (미공개 출원·내부 자료·개인정보 금지).
+- 각 페이지는 검색 노출 차단(noindex) + `robots.txt` 전체 차단.

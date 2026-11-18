@@ -1,0 +1,768 @@
+<!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex,nofollow"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>US 11,210,989 심사경과 버전 2.1</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 파일 래퍼(file wrapper) 서류철 — 왼쪽 목차 레일 + 본문, 청구항 상태 매트릭스가 중심 */
+:root{
+  --bg:#f6f7f8; --paper:#ffffff; --ink:#1b2430; --muted:#5d6876; --line:#dfe3e8;
+  --accent:#1f5f8b; --accent-soft:#e6eff6;
+  --ok:#1f7a4d; --ok-soft:#e3f3ea; --bad:#b23a32; --bad-soft:#f8e6e4; --na:#8a94a0; --na-soft:#eef0f3; --warn:#9a6a00; --warn-soft:#fbf1d9;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161b; --paper:#1a2027; --ink:#e4e8ed; --muted:#9aa5b2; --line:#2c343e;
+  --accent:#6fb0dd; --accent-soft:#1d3142;
+  --ok:#5cc28d; --ok-soft:#183427; --bad:#ec7a70; --bad-soft:#3a1f1d; --na:#7d8794; --na-soft:#232a32; --warn:#e2b54c; --warn-soft:#352b13; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161b; --paper:#1a2027; --ink:#e4e8ed; --muted:#9aa5b2; --line:#2c343e;
+  --accent:#6fb0dd; --accent-soft:#1d3142;
+  --ok:#5cc28d; --ok-soft:#183427; --bad:#ec7a70; --bad-soft:#3a1f1d; --na:#7d8794; --na-soft:#232a32; --warn:#e2b54c; --warn-soft:#352b13; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.wrap{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px;border-left:1px solid var(--line)}
+nav.toc a{display:block;padding:4px 12px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;margin-left:-1px}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent);border-left-color:var(--accent);outline:none}
+main{display:grid;gap:48px;min-width:0}
+h1,h2,h3{text-wrap:balance;line-height:1.3;margin:0}
+h2{font-size:20px;font-weight:700;display:flex;align-items:baseline;gap:10px}
+h2 .no{font-family:var(--f-mono);font-size:13px;color:var(--accent);font-weight:500}
+h3{font-size:16px;font-weight:600}
+p{margin:0}
+section{display:grid;gap:16px;scroll-margin-top:24px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* 헤더 */
+header.doc{display:grid;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+header.doc .num{font-family:var(--f-mono);font-size:15px;color:var(--accent);font-weight:500}
+header.doc h1{font-size:30px;font-weight:700;max-width:22em}
+header.doc .en{color:var(--muted);font-size:14px}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
+.verdict div{background:var(--paper);padding:14px 16px;display:grid;gap:2px}
+.verdict b{font-size:22px;font-family:var(--f-mono);font-weight:500}
+.verdict span{font-size:12.5px;color:var(--muted)}
+.lede{font-size:16px;max-width:44em}
+
+/* 표 */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child>*{border-bottom:none}
+th{font-weight:600;color:var(--muted);font-size:12.5px;white-space:nowrap}
+table.biblio th{width:150px;background:var(--bg)}
+
+/* 타임라인 */
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:104px 18px minmax(0,1fr);gap:12px;align-items:start}
+.timeline .d{font-family:var(--f-mono);font-size:13px;color:var(--muted);padding-top:2px;text-align:right;font-variant-numeric:tabular-nums}
+.timeline .dot{position:relative;height:100%;min-height:44px}
+.timeline .dot::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--line)}
+.timeline li:first-child .dot::before{top:8px}
+.timeline li:last-child .dot::before{bottom:auto;height:8px}
+.timeline .dot::after{content:"";position:absolute;left:3px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--na)}
+.timeline li.ex .dot::after{border-color:var(--bad);background:var(--bad-soft)}
+.timeline li.ap .dot::after{border-color:var(--accent);background:var(--accent-soft)}
+.timeline li.ok .dot::after{border-color:var(--ok);background:var(--ok)}
+.timeline .t{padding-bottom:18px}
+.timeline .t b{font-weight:600}
+.timeline .t p{font-size:13.5px;color:var(--muted)}
+
+/* 상태 칩·매트릭스 */
+.chip{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.c-ok{background:var(--ok-soft);color:var(--ok)}
+.c-bad{background:var(--bad-soft);color:var(--bad)}
+.c-na{background:var(--na-soft);color:var(--na)}
+.c-warn{background:var(--warn-soft);color:var(--warn)}
+table.matrix td,table.matrix th{text-align:center;padding:7px 10px}
+table.matrix td:first-child,table.matrix th:first-child{text-align:left}
+table.matrix td:last-child,table.matrix th:last-child{text-align:left}
+table.matrix tbody tr:hover{background:var(--bg)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);align-items:center}
+
+/* 경과 카드 */
+.oa{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px 22px;display:grid;gap:14px}
+.oa-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline;justify-content:space-between}
+.oa-head .date{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.oa dl{display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px 16px;margin:0;font-size:14px}
+.oa dt{color:var(--muted);font-weight:600;font-size:13px}
+.oa dd{margin:0}
+.oa ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.quote{border-left:3px solid var(--line);padding:2px 0 2px 14px;color:var(--muted);font-size:14px}
+.argue{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.argue>div{border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:grid;gap:4px;font-size:14px}
+.argue .who{font-size:12px;font-weight:700;letter-spacing:.04em}
+.argue .app .who{color:var(--accent)}
+.argue .exm .who{color:var(--bad)}
+
+/* 허여사유 */
+.allow{background:var(--ok-soft);border:1px solid color-mix(in srgb,var(--ok) 35%,transparent);border-radius:6px;padding:20px 22px;display:grid;gap:12px}
+.allow h3{color:var(--ok)}
+.formula{font-family:var(--f-mono);font-size:15px;background:var(--paper);border-radius:4px;padding:10px 14px;overflow-x:auto;white-space:nowrap}
+
+/* 청구항 */
+.claim{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 22px;display:grid;gap:10px}
+.claim-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.claim-head .n{font-family:var(--f-mono);font-weight:500;font-size:14px}
+.claim ol.el{margin:0;padding-left:20px;display:grid;gap:3px;font-size:14px}
+.claim .key{background:var(--warn-soft);color:var(--ink);padding:0 3px;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+details{font-size:13.5px}
+details summary{cursor:pointer;color:var(--accent);font-weight:500}
+details summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details .orig{margin-top:8px;color:var(--muted);line-height:1.6}
+details .orig ul{margin:2px 0;padding-left:18px}
+.deps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px}
+.deps div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 14px;font-size:13.5px;display:grid;gap:2px}
+.deps .n{font-family:var(--f-mono);font-size:12.5px;color:var(--accent)}
+
+.points{display:grid;gap:10px;margin:0;padding-left:20px}
+a.src{font-family:var(--f-mono);font-size:11.5px;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--line);background:var(--paper);border-radius:3px;padding:0 5px;margin-left:5px;white-space:nowrap;vertical-align:1px}
+a.src:hover,a.src:focus-visible{border-color:var(--accent);background:var(--accent-soft);outline:none}
+.srcs{display:inline-flex;flex-wrap:wrap;gap:4px}
+.doclist td:first-child{font-family:var(--f-mono);color:var(--muted);white-space:nowrap}
+.doclist a{color:var(--accent);font-weight:500}
+/* 요약 */
+.story{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.story>div{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+.story h3{font-size:15px}
+.story .q{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.story p,.story li{font-size:14px}
+.story ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:f}
+.flow li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.flow li:first-child{border-top:none}
+.flow li::before{counter-increment:f;content:counter(f);width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--f-mono);font-weight:500;display:grid;place-items:center;font-size:13px}
+.flow b{display:block;margin-bottom:2px}
+.flow p{font-size:14px;color:var(--ink)}
+.plain{background:var(--accent-soft);border-radius:6px;padding:12px 16px;display:grid;gap:4px;font-size:14.5px}
+.plain .lbl{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+
+/* 청구항 트리 */
+.trees{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.tree{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:8px;align-content:start}
+.tree-h{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.tree-h b{font-size:15px}
+.tree ul{list-style:none;margin:0;padding:0}
+.tree ul ul{margin-left:12px;padding-left:16px;border-left:1.5px solid var(--line)}
+.tree li{position:relative;padding:5px 0 5px 0}
+.tree ul ul>li::before{content:"";position:absolute;left:-16px;top:17px;width:12px;border-top:1.5px solid var(--line)}
+.node{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;align-items:baseline}
+.node .cn{font-family:var(--f-mono);font-weight:500;font-size:13.5px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 6px;min-width:30px;text-align:center}
+.node .ct{font-size:13.5px}
+.node .co{grid-column:2;font-size:12px;color:var(--muted)}
+.node.indep .cn{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.node.was-rej .co::after{content:" · 심사 중 거절됐다가 허여";color:var(--bad)}
+
+/* 항목 접기·펼치기 */
+.sec-head{display:flex;align-items:center;gap:10px;width:100%;background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.sec-head:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+.sec-head h2{flex:1}
+.sec-head .chev{flex:none;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted);font-size:13px;transition:transform .15s}
+.sec-head[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+.sec-head:hover .chev{border-color:var(--accent);color:var(--accent)}
+.sec-body{display:grid;gap:16px}
+.toc-all{display:flex;gap:6px;margin-top:12px;padding-left:12px}
+.toc-all button{font:inherit;font-size:12px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px;cursor:pointer}
+.toc-all button:hover{color:var(--accent);border-color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.sec-head .chev{transition:none}}
+/* PDF 뷰어 */
+.pv{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,var(--ink) 55%,transparent);display:flex;align-items:stretch;justify-content:center;
+  padding:calc(env(safe-area-inset-top,0px) + 16px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 16px) max(16px,env(safe-area-inset-left,0px))}
+.pv-box{background:var(--paper);border-radius:8px;width:min(900px,100%);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.pv-bar{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.pv-title{font-weight:600;font-size:14px;flex:1 1 200px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv-nav{display:flex;gap:6px;align-items:center;font-family:var(--f-mono);font-size:13px}
+.pv button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:4px 10px;cursor:pointer}
+.pv button:hover,.pv button:focus-visible{border-color:var(--accent);color:var(--accent);outline:none}
+.pv button:disabled{opacity:.4;cursor:default}
+.pv-body{flex:1;overflow:auto;background:var(--bg);display:flex;justify-content:center;align-items:flex-start;padding:12px}
+.pv-body canvas{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);max-width:100%;height:auto}
+.pv-msg{padding:40px 16px;color:var(--muted);font-size:14px;text-align:center}
+.note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:grid;gap:6px}
+.tag-est{font-size:11.5px;font-weight:600;color:var(--warn);border:1px solid currentColor;border-radius:3px;padding:0 5px;margin-left:4px;white-space:nowrap}
+
+@media (max-width:820px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  nav.toc{display:none}
+  header.doc h1{font-size:24px}
+  .oa dl{grid-template-columns:minmax(0,1fr)}
+  .oa dt{margin-top:4px}
+  .timeline li{grid-template-columns:88px 18px minmax(0,1fr);gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <ol>
+    <li><a href="#summary">요약</a></li>
+    <li><a href="#biblio">서지사항</a></li>
+    <li><a href="#timeline">심사 경과</a></li>
+    <li><a href="#matrix">청구항 상태표</a></li>
+    <li><a href="#nonfinal">Non-Final</a></li>
+    <li><a href="#final">Final</a></li>
+    <li><a href="#advisory">Advisory·인터뷰</a></li>
+    <li><a href="#noa">허여·허여사유</a></li>
+    <li><a href="#refs">인용문헌</a></li>
+    <li><a href="#claims">등록 청구항</a></li>
+    <li><a href="#takeaway">시사점</a></li>
+    <li><a href="#docs">원문 서류</a></li>
+  </ol>
+  <div class="toc-all"><button type="button" data-all="open">모두 펼치기</button><button type="button" data-all="close">모두 접기</button></div>
+</nav>
+
+<main>
+<header class="doc">
+  <div class="num">US 11,210,989 B2 · 출원 16/945,110</div>
+  <h1>어레이 기판, 디스플레이 패널 및 디스플레이 장치</h1>
+  <div class="en">Array substrate, display panel and display device — BOE</div>
+  <p class="lede">핵심 청구항 1(색별 구동 트랜지스터 W/L 비)은 첫 OA부터 허여 판단을 받았습니다. 서브픽셀 면적 순서만 한정한 독립항 13은 Jung + Kim + Yu 조합으로 세 번 거절됐습니다. 출원인은 13에 구동 트랜지스터 W/L 한정을 넣고 RCE를 낸 뒤 8일 만에 허여를 받았습니다.</p>
+  <div class="verdict">
+    <div><b>1년 5개월</b><span>출원 → 등록 (2020-07-31 → 2021-12-28)</span></div>
+    <div><b>OA 2회</b><span>Non-Final 1 · Final 1 · Advisory 1</span></div>
+    <div><b>§103</b><span>거절 근거는 자명성 하나뿐</span></div>
+    <div><b>20항</b><span>등록 청구항 (독립항 3: 1·15·20)</span></div>
+  </div>
+</header>
+
+<section id="summary">
+  <h2><span class="no">00</span>요약</h2>
+  <div class="story">
+    <div>
+      <span class="q">기술 개요</span>
+      <h3>화이트 OLED 패널의 색별 휘도 보정</h3>
+      <p>본 발명의 패널은 모든 서브픽셀이 동일한 <b>백색광</b>을 발광하고, 상부의 컬러필터로 적·녹·청을 구현합니다. 컬러필터별 투과율이 상이하므로 동일 신호에서 색별 휘도 차이가 발생합니다.</p>
+      <p>본 발명은 다음 두 수단으로 이를 보정합니다.</p>
+      <ul>
+        <li><b>구동 트랜지스터:</b> 색별로 채널 폭/길이(W/L) 비를 달리하여 구동 전류를 조정합니다.</li>
+        <li><b>서브픽셀 면적:</b> 색별로 면적을 달리합니다 (R &gt; G &gt; B).</li>
+      </ul>
+      <p class="muted" style="font-size:13px">근거: 출원인 의견서의 명세서 [0076] 인용("화소회로와 면적 비율을 함께 조정") 및 청구항 21("동일 데이터 전압에서 휘도 일치").<a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서② p.1–2</a></p>
+    </div>
+    <div>
+      <span class="q">쟁점</span>
+      <h3>면적 순서만 한정한 청구항의 자명성</h3>
+      <p><b>구동 트랜지스터 W/L 비를 한정한 청구항 1</b>은 인용문헌에 해당 구성이 없어 최초 OA부터 허여 가능 판단을 받았습니다.</p>
+      <p><b>서브픽셀 면적 순서만 한정한 청구항 13</b>은 화이트 OLED 패널(Jung)에 색별 면적 차등(Kim: R &gt; B &gt; G, Yu: G &gt; B)을 결합하면 R &gt; G &gt; B에 용이하게 도달한다는 이유로 거절되었습니다.</p>
+      <p>출원인은 Kim과 Yu의 설계 원리가 상이하여 결합 동기가 없다고 2회 반박하였으나 받아들여지지 않았습니다.</p>
+    </div>
+    <div>
+      <span class="q">등록 경위</span>
+      <h3>W/L 한정 추가에 의한 허여</h3>
+      <p>심사관은 Final에서 휘도 또는 전류밀도 관련 조건을 청구항에 반영할 것을 제안하였습니다.</p>
+      <p>출원인은 청구항 13에 <b>"제1색 구동 트랜지스터의 W/L 비가 타 색과 상이함"</b>을 추가하고, <b>"동일 데이터 전압에서 세 색의 휘도가 실질적으로 일치함"</b>을 한정한 독립항을 신설하였습니다. Final 이후 보정으로 반영되지 않아 RCE를 청구하였고, 8일 후 허여되었습니다.</p>
+      <p><b>결론:</b> 면적 순서만으로는 특허성이 인정되지 않았으며, 구동 트랜지스터 W/L 또는 휘도 일치 한정이 추가되어 등록되었습니다.</p>
+    </div>
+  </div>
+  <h3 style="margin-top:6px">심사 경과 개요</h3>
+  <ol class="flow">
+    <li><div><b>Non-Final (2021-02-03) — 일부 허여 가능, 일부 거절</b><p>청구항 1–12(W/L 계열) 및 이를 인용하는 패널·장치 청구항은 허여 가능. 면적 계열 청구항 13–15, 17, 19는 Jung + Kim (+ Yu) 조합에 의한 §103 거절.</p></div></li>
+    <li><div><b>1차 응답 (2021-04-29) — 결합 동기 부재 주장</b><p>청구항 14(R·G·B 지정)를 13에 병합한 외에는 실질적 보정 없음. Kim(R &gt; B &gt; G)과 Yu(G &gt; B &gt; R)는 상이한 해결 수단이므로 결합하더라도 R &gt; G &gt; B에 이르지 않는다고 주장.</p></div></li>
+    <li><div><b>Final (2021-05-11) — 주장 불채택, 보정 방향 제시</b><p>청구항 13은 설계 근거가 아닌 구조만 한정하므로 구조 대비로 결합이 가능하다고 판단. 휘도·전류밀도 조건의 청구항 반영을 제안.</p></div></li>
+    <li><div><b>Final 후 보정 및 Advisory (2021-07-09 ~ 07-26) — 보정 미반영</b><p>청구항 13에 W/L 한정 추가, 휘도 일치 독립항 신설. 추가 검색이 필요한 신규 쟁점에 해당하여 Final 이후 단계에서 반영되지 않음. 심사관의 전화 인터뷰 시도 2회는 대리인 미응답.</p></div></li>
+    <li><div><b>RCE 및 허여 (2021-08-10 ~ 08-18)</b><p>동일 보정을 RCE로 정식 심사에 회부. 심사관의 추가 검색 후 거절 이유 없이 20항 전부 허여.</p></div></li>
+  </ol>
+</section>
+
+<section id="biblio">
+  <h2><span class="no">01</span>서지사항</h2>
+  <div class="tbl-wrap"><table class="biblio"><tbody>
+    <tr><th>등록번호</th><td class="mono">US 11,210,989 B2 (등록일 2021-12-28)</td></tr>
+    <tr><th>출원번호</th><td class="mono">16/945,110 (출원일 2020-07-31)</td></tr>
+    <tr><th>공개</th><td>공개 통지 2021-06-24</td></tr>
+    <tr><th>출원인</th><td>Beijing BOE Technology Development Co., Ltd. · BOE Technology Group Co., Ltd. (중국 베이징)</td></tr>
+    <tr><th>발명자</th><td>Chen Xu, Xueguang Hao, Yong Qiao, Xinyin Wu</td></tr>
+    <tr><th>우선권·패밀리</th><td>중국 실용신안 <span class="mono">CN 210575036 U</span> (2020-05-19 공고) — 우선권 증명서류 전자 수령<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=2" target="_blank" rel="noopener">Non-Final p.2</a></td></tr>
+    <tr><th>심사관</th><td>Pegeman Karimi (Primary Examiner) · Art Unit 2691 · 분류 345-694000<a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=2" target="_blank" rel="noopener">NOA p.2</a></td></tr>
+    <tr><th>CPC</th><td class="mono">G09G 3/2003 (F) · G09G 3/3275, 3/3266, 3/3233 · H01L 27/3218, 27/3216, 27/3213 · G09G 2330/021, 2300/0452 (A)<a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=1" target="_blank" rel="noopener">Issue Class. p.1</a></td></tr>
+    <tr><th>IPC</th><td class="mono">G09G 3/32<a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=2" target="_blank" rel="noopener">Issue Class. p.2</a></td></tr>
+    <tr><th>대리인</th><td>Arent Fox LLP (대리인 Michael Fainberg) · Docket 038835.00508<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=6" target="_blank" rel="noopener">의견서① p.6</a></td></tr>
+    <tr><th>제도</th><td>AIA(선발명자출원주의) 적용 · 대기업(Undiscounted) · 등록료 $1,200 · 4년차 유지료 납부(2025-01-15)<a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=1" target="_blank" rel="noopener">NOA p.1</a></td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="timeline">
+  <h2><span class="no">02</span>심사 경과</h2>
+  <ol class="timeline">
+    <li class="ap"><span class="d">2020-07-31</span><span class="dot"></span><div class="t"><b>출원</b><p>청구항 1–19 · 중국 실용신안 우선권 주장</p></div></li>
+    <li class="ex"><span class="d">2021-02-03</span><span class="dot"></span><div class="t"><b>Non-Final Rejection</b><p>허여 가능 1–12, 16, 18 / 거절 13–15, 17, 19 (§103)<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=2" target="_blank" rel="noopener">Non-Final p.2</a></p></div></li>
+    <li class="ap"><span class="d">2021-04-29</span><span class="dot"></span><div class="t"><b>보정·의견서</b><p>청구항 14(R·G·B 지정)를 삭제하고 그 내용을 13에 추가 · Kim과 Yu는 결합 동기가 없다고 주장<a class="src" href="US11210989-docs/03_2021-04-29_Claims_CLM.pdf#page=4" target="_blank" rel="noopener">보정① p.4</a><a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서① p.1</a></p></div></li>
+    <li class="ex"><span class="d">2021-05-11</span><span class="dot"></span><div class="t"><b>Final Rejection</b><p>거절 13, 15, 17, 19 유지 · 극복 방향 제시<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=2" target="_blank" rel="noopener">Final p.2</a><a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10</a></p></div></li>
+    <li class="ap"><span class="d">2021-07-09</span><span class="dot"></span><div class="t"><b>Final 후 보정 (AFCP 2.0)</b><p>13에 구동 TR W/L 한정 추가(R·G·B 지정은 빼서 신규 20으로), 신규 독립항 21(휘도 일치) · 1·6항 드레인/소스 → 제1/제2 전극<a class="src" href="US11210989-docs/06_2021-07-09_AFAmendment_Cover.pdf#page=1" target="_blank" rel="noopener">보정② 표지</a><a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서② p.1</a></p></div></li>
+    <li class="ex"><span class="d">2021-07-16</span><span class="dot"></span><div class="t"><b>심사관 전화 인터뷰 시도</b><p>대리인 2회 미응답 → 서면 요지만 기록<a class="src" href="US11210989-docs/09_2021-07-26_Interview_EXIN.pdf#page=1" target="_blank" rel="noopener">인터뷰 p.1</a></p></div></li>
+    <li class="ex"><span class="d">2021-07-26</span><span class="dot"></span><div class="t"><b>Advisory Action</b><p>보정 미반영 — 추가 검색 필요, Minami 문헌 언급<a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=2" target="_blank" rel="noopener">Advisory p.2</a><a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=3" target="_blank" rel="noopener">p.3</a></p></div></li>
+    <li class="ap"><span class="d">2021-08-10</span><span class="dot"></span><div class="t"><b>RCE (계속심사청구)</b><p>07-09 보정을 RCE와 함께 정식 반영(AMSB)</p></div></li>
+    <li class="ok"><span class="d">2021-08-18</span><span class="dot"></span><div class="t"><b>Notice of Allowance</b><p>청구항 1–13, 15–21 허여 · 별도 허여사유서 없음<a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=5" target="_blank" rel="noopener">NOA p.5</a></p></div></li>
+    <li class="ok"><span class="d">2021-12-28</span><span class="dot"></span><div class="t"><b>등록</b><p>심사관이 청구항 20항을 재번호 부여 (Issue Classification, 2021-08-14)<a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=3" target="_blank" rel="noopener">Issue Class. p.3</a></p></div></li>
+  </ol>
+</section>
+
+<section id="matrix">
+  <h2><span class="no">03</span>청구항 상태표 (출원 번호 기준)</h2>
+  <div class="legend">
+    <span class="chip c-ok">허여</span><span class="chip c-bad">거절</span><span class="chip c-na">삭제/없음</span><span class="chip c-warn">미반영</span>
+    <span>등록 번호는 심사관의 재번호표 그대로입니다.<a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=3" target="_blank" rel="noopener">Issue Class. p.3</a></span>
+    <span>단계별 상태:<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=2" target="_blank" rel="noopener">Non-Final p.2</a><a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=2" target="_blank" rel="noopener">Final p.2</a><a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=2" target="_blank" rel="noopener">Advisory p.2</a><a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=5" target="_blank" rel="noopener">NOA p.5</a></span>
+  </div>
+  <div class="tbl-wrap"><table class="matrix">
+    <thead><tr><th>출원 청구항</th><th>Non-Final<br><span class="mono">02-03</span></th><th>Final<br><span class="mono">05-11</span></th><th>Advisory<br><span class="mono">07-26</span></th><th>NOA<br><span class="mono">08-18</span></th><th>등록 번호</th></tr></thead>
+    <tbody>
+      <tr><td>1 (독립, W/L 비)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>1</td></tr>
+      <tr><td>2 (폭 동일·길이 차등)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>2</td></tr>
+      <tr><td>3 (길이 동일·폭 차등)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>5</td></tr>
+      <tr><td>4 (R·G·B 지정, 2 인용)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>3</td></tr>
+      <tr><td>5 (백색 W/L &lt; 청색)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>4</td></tr>
+      <tr><td>6–12 (보상 TR·층 구조)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>6–12</td></tr>
+      <tr><td>13 (독립, 면적 순서)</td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-ok">허여</span></td><td>15</td></tr>
+      <tr><td>14 (R·G·B 지정, 13 인용)</td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-na">삭제 04-29</span><a class="src" href="US11210989-docs/03_2021-04-29_Claims_CLM.pdf#page=5" target="_blank" rel="noopener">p.5</a></td><td><span class="chip c-na">—</span></td><td><span class="chip c-na">—</span></td><td>— (내용은 신규 20으로 부활)</td></tr>
+      <tr><td>15 (백색 면적 &lt; 청색)</td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-ok">허여</span></td><td>16</td></tr>
+      <tr><td>16 (패널, 1 인용)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>13</td></tr>
+      <tr><td>17 (패널, 13 인용)</td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-ok">허여</span></td><td>17</td></tr>
+      <tr><td>18 (장치, 16 인용)</td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td><span class="chip c-ok">허여</span></td><td>14</td></tr>
+      <tr><td>19 (장치, 17 인용)</td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-bad">거절</span></td><td><span class="chip c-ok">허여</span></td><td>18</td></tr>
+      <tr><td>20 (신규, R·G·B 지정, 13 인용)</td><td><span class="chip c-na">—</span></td><td><span class="chip c-na">—</span></td><td><span class="chip c-warn">미반영</span></td><td><span class="chip c-ok">허여</span></td><td>19</td></tr>
+      <tr><td>21 (신규 독립, 휘도 일치)</td><td><span class="chip c-na">—</span></td><td><span class="chip c-na">—</span></td><td><span class="chip c-warn">미반영</span></td><td><span class="chip c-ok">허여</span></td><td>20</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="nonfinal">
+  <h2><span class="no">04</span>Non-Final Rejection</h2>
+  <article class="oa">
+    <div class="oa-head"><h3>1차 거절 — 독립항 13 계열 §103</h3><span class="date">발송 2021-02-03 · 22쪽<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=1" target="_blank" rel="noopener">PDF 열기</a></span></div>
+    <div class="plain"><span class="lbl">요지</span>
+      <p>심사관은 청구항을 두 군으로 구분하였습니다. <b>구동 트랜지스터 W/L 비로 휘도를 조정하는 청구항 1 계열은 신규성·진보성이 인정</b>되었고, <b>서브픽셀 면적 순서만 한정한 청구항 13 계열은 공지 기술의 결합으로 판단</b>되었습니다.</p>
+      <p>거절 논리: Jung이 "화이트 OLED + 색별 컬러필터 + 구동회로"를 개시하고, 여기에 Kim의 색별 면적 차등을 결합하면 제1색 &gt; 제2색 &gt; 제3색 면적 관계가 도출되며, 녹색 &gt; 청색 관계는 Yu가 개시한다는 것입니다. 결합 동기로는 각 문헌에 기재된 수명 및 개구율 개선이 제시되었습니다.</p>
+    </div>
+    <dl>
+      <dt>거절 근거</dt><dd>35 U.S.C. §103 (자명성)<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=3" target="_blank" rel="noopener">Non-Final p.3</a></dd>
+      <dt>청구항 13</dt><dd>
+        <b>Jung + Kim</b><a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=3" target="_blank" rel="noopener">Non-Final p.3–5</a>
+        <ul>
+          <li>Jung: 기판, 서브픽셀, 픽셀 구동회로(20), 화이트 OLED, 서브픽셀별 다른 색 컬러필터를 개시 (Fig. 4, [0027], [0050]–[0051]).</li>
+          <li>Jung에 없는 것: "1색 면적 &gt; 2색 면적 &gt; 3색 면적".</li>
+          <li>Kim: 서브픽셀 길이 L1 &gt; L4 &gt; L3, 높이 동일 → R &gt; B &gt; G 면적 ([0078], Fig. 4).</li>
+          <li>결합 동기: 전류밀도가 높은 서브픽셀이라도 최적 설계에서 면적을 조정할 수 있음 (Kim [0077]).</li>
+        </ul></dd>
+      <dt>청구항 14·15·17·19</dt><dd>
+        <b>Jung + Kim + Yu</b><a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=5" target="_blank" rel="noopener">Non-Final p.5</a>
+        <ul>
+          <li>14 (1색 = 적, 2색 = 녹, 3색 = 청): Jung의 적색 서브픽셀 + Kim의 L1 &gt; L3(R &gt; G 면적).<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=5" target="_blank" rel="noopener">p.5–6</a></li>
+          <li>Jung·Kim에 없는 "2색 = 녹색, 3색 = 청색, G &gt; B": Yu(Fig. 1a, [0022]). 동기는 개구율 향상·표시 효과·수명 연장 (Yu [0004]).<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=6" target="_blank" rel="noopener">p.6–7</a></li>
+          <li>15 (백색 &lt; 청색): Jung의 백색 서브픽셀 + Kim의 L4 &gt; L2.<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=7" target="_blank" rel="noopener">p.7</a></li>
+          <li>17 (패널): Yu [0023]. 19 (장치): Jung [0003] OLED 표시장치.<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=8" target="_blank" rel="noopener">p.8</a></li>
+        </ul></dd>
+      <dt>허여 가능</dt><dd>청구항 1–12, 16, 18 — 사유는 <a href="#noa">허여사유</a>에 정리<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=8" target="_blank" rel="noopener">Non-Final p.8–10</a></dd>
+      <dt>참고 문헌</dt><dd>Choi (US 2015/0311261, 서브픽셀 크기 상이), Wu (US 2019/0122599, RGBW 서브픽셀)<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></dd>
+    </dl>
+  </article>
+</section>
+
+<section id="final">
+  <h2><span class="no">05</span>1차 응답과 Final Rejection</h2>
+  <article class="oa">
+    <div class="oa-head"><h3>1차 응답 — 보정서·의견서</h3><span class="date">제출 2021-04-29 · 대리인 Michael Fainberg<a class="src" href="US11210989-docs/02_2021-04-29_Response_Cover.pdf#page=1" target="_blank" rel="noopener">표지</a></span></div>
+    <div class="plain"><span class="lbl">요지</span>
+      <p>출원인은 청구항을 실질적으로 보정하지 않고 <b>인용문헌 간 결합 동기 부재</b>를 주장하였습니다. 보정은 종속항 14의 R·G·B 지정을 청구항 13에 병합한 것에 한정됩니다.</p>
+      <p>주장 요지: Kim은 전류밀도를 기준으로 R &gt; B &gt; G로, Yu는 녹색의 백색 휘도 기여도를 기준으로 G &gt; B &gt; R로 설계하므로, 설계 원리가 상이한 두 문헌을 결합하더라도 본 발명의 R &gt; G &gt; B에 이르지 않는다는 것입니다. 이미 허여 가능 판단을 받은 W/L 한정을 청구항 13에 도입하는 방안은 채택되지 않았습니다.</p>
+    </div>
+    <dl>
+      <dt>보정</dt><dd>
+        <ul>
+          <li>청구항 13 끝에 "제1색 = 적색, 제2색 = 녹색, 제3색 = 청색"을 추가했습니다. 원래 종속항 14의 내용입니다.<a class="src" href="US11210989-docs/03_2021-04-29_Claims_CLM.pdf#page=4" target="_blank" rel="noopener">보정① p.4</a></li>
+          <li>청구항 14 삭제, 청구항 15의 인용을 14 → 13으로 변경. 나머지는 원래대로입니다.<a class="src" href="US11210989-docs/03_2021-04-29_Claims_CLM.pdf#page=5" target="_blank" rel="noopener">보정① p.5</a></li>
+        </ul></dd>
+      <dt>요지</dt><dd>Jung, Kim, Yu 어디에도 "R &gt; G &gt; B 면적"이 없다는 주장 하나에 집중했습니다. W/L 같은 새 한정은 넣지 않았습니다.<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서① p.1</a></dd>
+    </dl>
+    <div class="argue">
+      <div class="app"><span class="who">출원인 주장 (의견서 원문 7–11쪽 = PDF p.1–5)</span>
+        <ul>
+          <li>Kim의 배경기술([0009]–[0010])과 Yu([0022])는 "많이 쓰는 서브픽셀을 키워 전류밀도를 낮춘다"는 같은 해법입니다. Kim의 발명은 바로 이 해법의 문제(다른 색의 순색 피크 휘도를 낼 수 없음)를 풀려고 나온 것이라, Yu를 다시 결합할 동기가 없습니다.<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=2" target="_blank" rel="noopener">의견서① p.2–3</a></li>
+          <li>Kim은 피크 휘도 전류밀도와 평균 사용 전류밀도로 면적을 정해 R &gt; B &gt; G가 됩니다([0050], [0076], Fig. 3).<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=3" target="_blank" rel="noopener">p.3–4</a></li>
+          <li>Yu는 녹색이 백색 휘도에 가장 크게 기여한다는 이유로 G &gt; B &gt; R로 설계합니다. 기존 배열은 B &gt; G &gt; R입니다.<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=4" target="_blank" rel="noopener">p.4</a></li>
+          <li>두 문헌은 서로 다른 해법이고, 결합해도 녹색 기여도가 전류밀도에 반영되어 R &gt; B &gt; G가 될 뿐 R &gt; G &gt; B는 나오지 않습니다.<a class="src" href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf#page=4" target="_blank" rel="noopener">p.4–5</a></li>
+        </ul></div>
+    </div>
+  </article>
+  <article class="oa">
+    <div class="oa-head"><h3>최후 거절 — 같은 조합으로 유지</h3><span class="date">발송 2021-05-11 · 23쪽<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=1" target="_blank" rel="noopener">PDF 열기</a></span></div>
+    <div class="plain"><span class="lbl">요지</span>
+      <p>심사관은 출원인의 주장을 받아들이지 않았습니다. <b>청구항 13은 설계 근거를 한정하지 않고 서브픽셀 면적 순서라는 구조만 한정하므로</b>, 인용문헌 역시 구조 대비로 판단하면 족하다는 것입니다. Kim의 "적색 최대"와 Yu의 "녹색 &gt; 청색"을 결합하면 R &gt; G &gt; B가 도출됩니다.</p>
+      <p>아울러 심사관은 <b>녹색의 백색 휘도 기여도, 피크 휘도 전류밀도, 평균 사용 전류밀도</b> 등의 조건을 청구항에 구체화하면 인용문헌을 극복할 수 있다고 제안하였습니다. 이후 신설된 "동일 데이터 전압에서 휘도 일치" 독립항은 이 제안에 대응한 것입니다.</p>
+    </div>
+    <dl>
+      <dt>대상</dt><dd>2021-04-29 보정 반영. 거절 13, 15, 17, 19 / 허여 1–12, 16, 18<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=2" target="_blank" rel="noopener">Final p.2</a></dd>
+      <dt>거절 근거</dt><dd>§103 — Jung + Kim + Yu. 청구항 13에 14의 R·G·B 지정이 들어가 13도 세 문헌 조합으로 거절했습니다.<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=3" target="_blank" rel="noopener">Final p.3–7</a></dd>
+      <dt>추가 참고 문헌</dt><dd>Matsui (US 2013/0135845, 표시장치·픽셀 구조), Lu (US 2016/0033812, 청색 컬러필터가 적·녹보다 작음)<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10–11</a></dd>
+    </dl>
+    <div class="argue">
+      <div class="app"><span class="who">출원인 주장 (심사관 요약)</span>
+        <p>Kim과 Yu는 결합 동기가 없고, 결합해도 R &gt; B &gt; G가 되어 청구항 13의 R &gt; G &gt; B가 나오지 않습니다.<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=8" target="_blank" rel="noopener">Final p.8–9</a></p></div>
+      <div class="exm"><span class="who">심사관 판단</span>
+        <p>청구항 13은 배열 구조와 면적만 한정하고 휘도·전류 조건은 없습니다. Kim(R이 가장 큼)에 Yu(G &gt; B)를 더하면 R &gt; G &gt; B가 됩니다. Yu는 이 배열로 개구율이 오른다고 밝히고 있습니다.<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=9" target="_blank" rel="noopener">Final p.9–10</a></p></div>
+    </div>
+    <p class="quote">심사관 제안: 녹색 서브픽셀의 백색 휘도 기여, 피크 휘도 전류밀도, 평균 사용 전류밀도를 청구항에 더 구체적으로 넣으면 인용문헌을 극복할 수 있다.<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10</a></p>
+  </article>
+</section>
+
+<section id="advisory">
+  <h2><span class="no">06</span>Advisory Action · 심사관 인터뷰</h2>
+  <article class="oa">
+    <div class="oa-head"><h3>Final 후 보정 미반영</h3><span class="date">보정 2021-07-09 · 인터뷰 시도 07-16 · 발송 07-26</span></div>
+    <div class="plain"><span class="lbl">요지</span>
+      <p>출원인은 본 단계에서 <b>청구항을 실질적으로 보정</b>하였습니다. 청구항 13에 "제1색 구동 트랜지스터의 W/L 비가 타 색과 상이함"을 추가하고, 심사관 제안에 따라 "동일 데이터 전압에서 세 색의 휘도가 실질적으로 일치함"을 한정한 독립항 21을 신설하였습니다.</p>
+      <p>그러나 <b>Final 이후 보정</b>은 원칙적으로 추가 검색을 요하지 않는 범위에서만 반영됩니다. W/L 한정은 종전에 청구항 1에 대해서만 검색되었고 신규 청구항도 검색이 필요하였으므로 보정은 반영되지 않았습니다. 심사관은 신규 한정에 해당할 수 있는 Minami 문헌을 확인하고 대리인에게 2회 유선 연락하였으나 연결되지 않았습니다. 이에 따라 RCE가 필요하게 되었습니다.</p>
+    </div>
+    <dl>
+      <dt>출원인 보정</dt><dd>2021-07-09, 37 CFR 1.116 보정 + AFCP 2.0 신청<a class="src" href="US11210989-docs/06_2021-07-09_AFAmendment_Cover.pdf#page=1" target="_blank" rel="noopener">보정② 표지</a>
+        <ul>
+          <li><b>청구항 13:</b> 픽셀 구동회로가 "구동 트랜지스터를 포함"한다고 밝히고, "제1색 구동 TR의 W/L 비가 제2색·제3색 구동 TR의 W/L 비와 다르다"를 추가했습니다. 04-29에 넣은 R·G·B 지정은 지웠습니다.<a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=4" target="_blank" rel="noopener">보정② p.4–5</a></li>
+          <li><b>신규 20:</b> 13의 종속항으로 R·G·B 지정. 삭제했던 원래 14와 같은 내용입니다.<a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=5" target="_blank" rel="noopener">보정② p.5</a></li>
+          <li><b>신규 21:</b> 독립항. 면적 R &gt; G &gt; B 순서 + "같은 데이터 전압에서 세 색의 발광 휘도가 실질적으로 일치".<a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=5" target="_blank" rel="noopener">보정② p.5–6</a></li>
+          <li><b>청구항 1·6:</b> 드레인/소스를 제1/제2 전극으로 바꿨습니다. 두 전극이 서로 바뀔 수 있다는 이유입니다. 16·17은 오기 정정입니다.<a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=1" target="_blank" rel="noopener">보정② p.1–3</a><a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서② p.1</a></li>
+        </ul></dd>
+      <dt>출원인 주장</dt><dd>
+        <ul>
+          <li>13의 근거는 명세서 [0035], [0071], [0076]. [0076]은 "화소회로와 서브픽셀 면적 비율을 함께 조정할 수 있다"고 적고 있습니다. 21의 근거는 [0071]–[0072]입니다.<a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=1" target="_blank" rel="noopener">의견서② p.1–2</a></li>
+          <li>Jung, Kim, Yu는 모두 구동 TR 채널 W/L 비에 대해 말하지 않으므로 13과 그 종속항, 신규 20은 특허 가능합니다.<a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=2" target="_blank" rel="noopener">의견서② p.2</a></li>
+          <li>세 문헌 모두 "같은 데이터 전압에서 휘도 일치"를 개시하지 않으므로 21도 특허 가능합니다.<a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=2" target="_blank" rel="noopener">의견서② p.2</a></li>
+          <li>허여 상태가 아니라고 보면 전화로 인터뷰를 잡아 달라고 요청했습니다.<a class="src" href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf#page=3" target="_blank" rel="noopener">의견서② p.3</a></li>
+        </ul></dd>
+      <dt>판단</dt><dd><span class="chip c-warn">보정 미반영</span><a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=2" target="_blank" rel="noopener">Advisory p.2 (3번 항목)</a>
+        <ul>
+          <li>3(a) 새 쟁점이라 추가 검토·검색이 필요함.</li>
+          <li>3(c) 쟁점을 줄이거나 단순하게 만들지 않아 항소에 더 나은 형태가 아님.</li>
+        </ul></dd>
+      <dt>이유</dt><dd>13에 넣은 한정은 원래 청구항 1에 있던 것이라 13이나 그 종속항에 대해서는 검색한 적이 없습니다. 신규 20·21도 검색이 필요합니다. 새 한정에 해당할 수 있는 문헌으로 <b>Minami (US 2017/0124948)</b>를 찾았다고 밝혔습니다.<a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=3" target="_blank" rel="noopener">Advisory p.3</a></dd>
+      <dt>인터뷰</dt><dd>심사관이 07-16에 대리인에게 두 번 전화했지만 받지 않아 같은 내용을 서면 요지로 남겼습니다. 보정서 표지에는 심사관이 "DO NOT ENTER /P.K/"를 적었습니다.<a class="src" href="US11210989-docs/09_2021-07-26_Interview_EXIN.pdf#page=1" target="_blank" rel="noopener">인터뷰 p.1</a><a class="src" href="US11210989-docs/11_2021-07-26_AFAmendment_DoNotEnter.pdf#page=1" target="_blank" rel="noopener">미반영 표시 p.1</a></dd>
+      <dt>상태</dt><dd>허여 1–12, 16, 18 / 거절 13, 15, 17, 19. 응답 기간은 Final 발송일 기준<a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=2" target="_blank" rel="noopener">Advisory p.2 (1·15번)</a></dd>
+    </dl>
+  </article>
+</section>
+
+<section id="noa">
+  <h2><span class="no">07</span>허여와 허여사유</h2>
+  <article class="oa">
+    <div class="oa-head"><h3>Notice of Allowance</h3><span class="date">RCE 2021-08-10 → 허여 2021-08-18</span></div>
+    <div class="plain"><span class="lbl">요지</span>
+      <p>RCE 청구로 Final의 효력이 해소되고 심사가 재개되었습니다. 출원인은 2021-07-09 보정을 그대로 정식 심사에 회부하였고, 심사관은 추가 검색 후 <b>8일 만에 전 청구항을 허여</b>하였습니다. Advisory에서 언급된 Minami는 거절 이유로 사용되지 않았습니다.</p>
+      <p>별도의 허여 이유서는 작성되지 않았습니다. 따라서 허여 이유는 선행 OA의 허여 가능 판단과 최종 청구항 문언에 의해 파악됩니다. 선행문헌과의 구별 요소는 <b>색별 구동 트랜지스터 W/L 차이</b>(청구항 1·15)와 <b>동일 데이터 전압에서의 휘도 일치</b>(청구항 20)입니다.</p>
+    </div>
+    <dl>
+      <dt>허여 청구항</dt><dd>출원 청구항 1–13, 15–21 (14는 삭제) → 등록 20항. O.G. 대표 청구항 1, 대표 도면 Fig. 4<a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=5" target="_blank" rel="noopener">NOA p.5 (3번)</a><a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=1" target="_blank" rel="noopener">Issue Class. p.1</a></dd>
+      <dt>허여 근거 서면</dt><dd>Notice of Allowability에 심사관 보정(Examiner's Amendment)과 허여사유서(Reasons for Allowance) 표시가 <b>없습니다</b>. RCE와 함께 정식 반영된 07-09 보정을 그대로 받아들였습니다.<a class="src" href="US11210989-docs/12_2021-08-18_NOA.pdf#page=5" target="_blank" rel="noopener">NOA p.5 (첨부 5·6번 미체크)</a></dd>
+      <dt>Minami</dt><dd>Advisory에서 언급한 Minami로 추가 검색했지만 거절하지 않았습니다. 새 한정을 Minami로 넘을 수 없다고 본 것으로 읽힙니다.</dd>
+    </dl>
+  </article>
+  <div class="allow">
+    <h3>핵심 허여사유 (Non-Final·Final의 "Allowable Subject Matter")<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=8" target="_blank" rel="noopener">Non-Final p.8–10</a><a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10</a></h3>
+    <p>청구항 1은 색별 구동 트랜지스터의 채널 폭/길이(W/L) 비를 아래 순서로 정한 구성 때문에 허여됐습니다. W/L은 반도체층과 게이트가 겹치는 영역의 폭과 길이 비입니다.</p>
+    <div class="formula">(W/L)<sub>1색</sub> &gt; (W/L)<sub>2색</sub> &gt; (W/L)<sub>3색</sub></div>
+    <ul class="points">
+      <li><b>Jung</b>: 화이트 OLED + 컬러필터 + 구동회로(DR_Tr, SW_Tr, Stg_C)까지 모두 개시하지만, 색별 W/L 비 비교는 없습니다.<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=9" target="_blank" rel="noopener">Non-Final p.9</a></li>
+      <li><b>Kim, Yu</b>: 면적 차이만 다루고 W/L 한정은 없습니다.<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></li>
+      <li><b>Wu (US 2021/0011350)</b>: 2열 화소의 스위치 W/L이 1열보다 크다는 열(column) 단위 차이만 있고, 색별 구동 트랜지스터 비교는 없습니다.<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></li>
+    </ul>
+    <p>독립항 13(등록 15)은 07-09 보정으로 "1색 구동 트랜지스터 W/L이 2색·3색과 다르다"는 한정을 얻어 허여됐습니다. 신규 독립항 21(등록 20)은 W/L 한정 없이 "같은 데이터 전압에서 휘도 일치"로 허여됐습니다. Final에서 심사관이 제안한 방향 그대로입니다.<a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=4" target="_blank" rel="noopener">보정② p.4–6</a><a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10</a></p>
+  </div>
+</section>
+
+<section id="refs">
+  <h2><span class="no">08</span>인용문헌</h2>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>문헌</th><th>번호</th><th>역할</th><th>개시 내용 (심사관 인용)</th></tr></thead>
+    <tbody>
+      <tr><td><b>Jung</b></td><td class="mono">US 2016/0099293</td><td><span class="chip c-bad">주 인용</span></td><td>WOLED + 서브픽셀별 컬러필터, 픽셀 구동회로, RWBG 서브픽셀 (Fig. 4·5)<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=3" target="_blank" rel="noopener">Non-Final p.3–4</a></td></tr>
+      <tr><td><b>Kim</b></td><td class="mono">US 2013/0161595</td><td><span class="chip c-bad">부 인용</span></td><td>서브픽셀 길이 L1 &gt; L4 &gt; L3 &gt; L2 → R &gt; B &gt; G &gt; W 면적, 전류밀도 기반 면적 설계<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=4" target="_blank" rel="noopener">Non-Final p.4–7</a></td></tr>
+      <tr><td><b>Yu</b></td><td class="mono">US 2020/0357335</td><td><span class="chip c-bad">부 인용</span></td><td>녹색 서브픽셀 면적 &gt; 청색, 개구율·수명 개선, 표시 패널<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=6" target="_blank" rel="noopener">Non-Final p.6–8</a></td></tr>
+      <tr><td><b>Wu</b></td><td class="mono">US 2021/0011350</td><td><span class="chip c-ok">허여 판단</span></td><td>열별 액티브 스위치 W/L 차이 — 색별 구동 TR 비교는 없음<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></td></tr>
+      <tr><td>Minami</td><td class="mono">US 2017/0124948</td><td><span class="chip c-warn">Advisory 언급</span></td><td>AFCP 보정 한정에 해당할 수 있다고 언급, 이후 거절에 쓰이지 않음<a class="src" href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf#page=3" target="_blank" rel="noopener">Advisory p.3</a></td></tr>
+      <tr><td>Choi</td><td class="mono">US 2015/0311261</td><td><span class="chip c-na">참고</span></td><td>크기가 다른 서브픽셀을 가진 OLED 표시장치<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></td></tr>
+      <tr><td>Wu</td><td class="mono">US 2019/0122599</td><td><span class="chip c-na">참고</span></td><td>RGBW 서브픽셀 표시 패널<a class="src" href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf#page=10" target="_blank" rel="noopener">Non-Final p.10</a></td></tr>
+      <tr><td>Matsui</td><td class="mono">US 2013/0135845</td><td><span class="chip c-na">참고</span></td><td>표시장치 및 픽셀 구조<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=10" target="_blank" rel="noopener">Final p.10</a></td></tr>
+      <tr><td>Lu</td><td class="mono">US 2016/0033812</td><td><span class="chip c-na">참고</span></td><td>청색 컬러필터가 적·녹 컬러필터보다 작은 구조<a class="src" href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf#page=11" target="_blank" rel="noopener">Final p.11</a></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="claims">
+  <h2><span class="no">09</span>등록 청구항</h2>
+  <p class="muted">독립항 3개(1·15·20)를 번역해 싣고, 원문은 펼쳐서 볼 수 있습니다. 괄호 안은 출원 번호입니다.<a class="src" href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf#page=3" target="_blank" rel="noopener">재번호표 Issue Class. p.3</a> 허여에 결정적인 한정은 <span class="key" style="background:var(--warn-soft);padding:0 3px;border-radius:2px">노란 표시</span>로 강조했습니다.</p>
+
+  <h3>청구항 구조 (인용 관계)</h3>
+  <div class="legend">
+    <span><span class="node indep" style="display:inline-grid"><span class="cn">1</span></span> 독립항</span>
+    <span><span class="node" style="display:inline-grid"><span class="cn">2</span></span> 종속항 — 선은 "어느 청구항을 인용하는지"를 뜻합니다</span>
+    <span style="color:var(--bad)">빨간 글씨 = 심사 중 거절됐다가 허여</span>
+  </div>
+  <div class="trees">
+    <div class="tree">
+      <div class="tree-h"><b>① 트랜지스터 W/L 계열</b><span class="chip c-ok">처음부터 허여</span></div>
+      <ul>
+        <li><div class="node indep"><span class="cn">1</span><span class="ct">색별 구동 TR 채널 W/L: 1색 &gt; 2색 &gt; 3색</span><span class="co">출원 1</span></div>
+          <ul>
+            <li><div class="node"><span class="cn">2</span><span class="ct">폭은 같고 길이로 차등 (1색이 가장 짧음)</span><span class="co">출원 2</span></div>
+              <ul>
+                <li><div class="node"><span class="cn">3</span><span class="ct">1색 = 적, 2색 = 녹, 3색 = 청</span><span class="co">출원 4</span></div>
+                  <ul>
+                    <li><div class="node"><span class="cn">4</span><span class="ct">백색 서브픽셀 추가, 백색 W/L &lt; 청색</span><span class="co">출원 5</span></div></li>
+                  </ul></li>
+              </ul></li>
+            <li><div class="node"><span class="cn">5</span><span class="ct">길이는 같고 폭으로 차등 (1색이 가장 넓음)</span><span class="co">출원 3</span></div></li>
+            <li><div class="node"><span class="cn">6</span><span class="ct">보상 TR 추가, 보상 TR W/L도 1색 &gt; 2색 &gt; 3색</span><span class="co">출원 6</span></div>
+              <ul>
+                <li><div class="node"><span class="cn">7</span><span class="ct">반도체층을 채널부·비채널부·커패시터 전극부로 구분</span><span class="co">출원 7</span></div>
+                  <ul>
+                    <li><div class="node"><span class="cn">8</span><span class="ct">커패시터 제2 전극 = 반도체층 위·아래 금속 전극 2개</span><span class="co">출원 8</span></div>
+                      <ul>
+                        <li><div class="node"><span class="cn">9</span><span class="ct">하부 금속 전극이 다른 전극을 덮음 (정사영)</span><span class="co">출원 9</span></div></li>
+                        <li><div class="node"><span class="cn">10</span><span class="ct">보상선이 하부 금속 전극과 같은 층</span><span class="co">출원 10</span></div></li>
+                        <li><div class="node"><span class="cn">11</span><span class="ct">게이트층 배선 배치 (스캔선·보상 스캔선·연결 배선)</span><span class="co">출원 11</span></div>
+                          <ul>
+                            <li><div class="node"><span class="cn">12</span><span class="ct">소스/드레인층 배치 (데이터선·전원선·상부 전극)</span><span class="co">출원 12</span></div></li>
+                          </ul></li>
+                      </ul></li>
+                  </ul></li>
+              </ul></li>
+            <li><div class="node"><span class="cn">13</span><span class="ct">디스플레이 패널</span><span class="co">출원 16</span></div>
+              <ul>
+                <li><div class="node"><span class="cn">14</span><span class="ct">디스플레이 장치</span><span class="co">출원 18</span></div></li>
+              </ul></li>
+          </ul></li>
+      </ul>
+    </div>
+
+    <div class="tree">
+      <div class="tree-h"><b>② 면적 순서 + W/L 상이 계열</b><span class="chip c-bad">3회 거절</span><span class="chip c-ok">RCE 후 허여</span></div>
+      <ul>
+        <li><div class="node indep was-rej"><span class="cn">15</span><span class="ct">면적 1색 &gt; 2색 &gt; 3색 + 1색 구동 TR W/L이 2·3색과 다름</span><span class="co">출원 13</span></div>
+          <ul>
+            <li><div class="node was-rej"><span class="cn">16</span><span class="ct">백색 서브픽셀 면적 &lt; 청색</span><span class="co">출원 15</span></div></li>
+            <li><div class="node was-rej"><span class="cn">17</span><span class="ct">디스플레이 패널</span><span class="co">출원 17</span></div>
+              <ul>
+                <li><div class="node was-rej"><span class="cn">18</span><span class="ct">디스플레이 장치</span><span class="co">출원 19</span></div></li>
+              </ul></li>
+            <li><div class="node"><span class="cn">19</span><span class="ct">1색 = 적, 2색 = 녹, 3색 = 청</span><span class="co">출원 20 (07-09 신규, 삭제된 원래 14와 같은 내용)</span></div></li>
+          </ul></li>
+      </ul>
+      <p class="muted" style="font-size:12.5px">청구항 16은 "청색 서브픽셀"을 언급하지만, 인용하는 15에는 청색 지정이 없고 R·G·B를 정한 19와도 인용 관계가 아닙니다. 원문 그대로이며, 선행 근거(antecedent basis) 측면에서 해석 여지가 있는 부분입니다.</p>
+    </div>
+
+    <div class="tree">
+      <div class="tree-h"><b>③ 휘도 일치 계열</b><span class="chip c-ok">07-09 신규 → 허여</span></div>
+      <ul>
+        <li><div class="node indep"><span class="cn">20</span><span class="ct">면적 1색 &gt; 2색 &gt; 3색 + 같은 데이터 전압에서 세 색 휘도가 실질적으로 일치</span><span class="co">출원 21 · 종속항 없음</span></div></li>
+      </ul>
+    </div>
+  </div>
+
+  <article class="claim">
+    <div class="claim-head"><span class="n">청구항 1 (출원 1)</span><span class="chip c-ok">독립 · 처음부터 허여</span><a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=1" target="_blank" rel="noopener">최종 보정본 p.1–2</a></div>
+    <p>어레이 기판으로서,</p>
+    <ol class="el">
+      <li>베이스 기판, 그 위의 복수의 서브픽셀 영역을 포함하고,</li>
+      <li>각 서브픽셀 영역은 픽셀 구동회로, 이에 연결된 백색 전계발광 소자, 해당 영역의 컬러 레지스트층을 포함하며, 서로 다른 영역은 서로 다른 색의 컬러 레지스트층에 대응하고,</li>
+      <li>픽셀 구동회로는 구동 트랜지스터, 데이터 기입 트랜지스터, 구동 트랜지스터의 게이트와 제1 전극 사이의 스토리지 커패시터를 포함하며,</li>
+      <li>구동 TR 게이트 ↔ 기입 TR 제1 전극, 구동 TR 제2 전극 ↔ 제1 전원선, 기입 TR 게이트 ↔ 스캔 신호선, 기입 TR 제2 전극 ↔ 데이터선으로 연결되고,</li>
+      <li>서브픽셀 영역은 적어도 제1색·제2색·제3색 영역을 포함하며,</li>
+      <li><span class="key">제1색 영역 구동 TR 채널의 W/L 비 &gt; 제2색 &gt; 제3색</span>이고,</li>
+      <li>W/L 비는 반도체층과 게이트의 중첩 영역의 폭/길이 비이며, 폭은 게이트 연장 방향, 길이는 반도체층 연장 방향 치수이다.</li>
+    </ol>
+    <details><summary>영문 원문</summary><div class="orig">An array substrate, comprising: a base substrate; and a plurality of sub-pixel regions on the base substrate; wherein each of the sub-pixel regions comprises: a pixel driving circuit; a white electroluminescent device connected with the pixel driving circuit; and a color resist layer corresponding to the each sub-pixel region; wherein different sub-pixel regions correspond to different color resist layers with different colors; wherein the pixel driving circuit comprises: a driving transistor; a data writing transistor; and a storage capacitor connected between a gate of the driving transistor and a first electrode of the driving transistor; wherein the gate of the driving transistor is connected with a first electrode of the data writing transistor, a second electrode of the driving transistor is connected with a first power line, a gate of the data writing transistor is connected with a scanning signal line, and a second electrode of the data writing transistor is connected with a data line; wherein the plurality of sub-pixel regions at least comprise: a first-color sub-pixel region; a second-color sub-pixel region; and a third-color sub-pixel region; wherein a width-to-length ratio of a channel region of a driving transistor in the first-color sub-pixel region is greater than a width-to-length ratio of a channel region of a driving transistor in the second-color sub-pixel region, and the width-to-length ratio of the channel region of the driving transistor in the second-color sub-pixel region is greater than a width-to-length ratio of a channel region of a driving transistor in the third-color sub-pixel region; and wherein a width-to-length ratio of a channel region of a driving transistor refers to a ratio of a width to a length of an overlapped region between a semiconductor layer of the driving transistor and a gate of the driving transistor, a width of the channel region refers to a dimension of the overlapped region in an extension direction of the gate of the driving transistor, and a length of the channel region refers to a dimension of the overlapped region in an extension direction of the semiconductor layer of the driving transistor.</div></details>
+  </article>
+
+  <article class="claim">
+    <div class="claim-head"><span class="n">청구항 15 (출원 13)</span><span class="chip c-ok">독립 · 07-09 보정 → RCE 후 허여</span><a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=4" target="_blank" rel="noopener">최종 보정본 p.4–5</a></div>
+    <p>어레이 기판으로서,</p>
+    <ol class="el">
+      <li>베이스 기판과 복수의 서브픽셀 영역을 포함하고, 각 영역은 <b>구동 트랜지스터를 포함하는</b> 픽셀 구동회로, 백색 전계발광 소자, 컬러 레지스트층을 포함하며 영역마다 색이 다르고,</li>
+      <li>적어도 제1색·제2색·제3색 영역을 포함하며,</li>
+      <li>제1색 영역 면적 &gt; 제2색 영역 면적 &gt; 제3색 영역 면적이고,</li>
+      <li><span class="key">제1색 영역 구동 TR 채널의 W/L 비는 제2색·제3색 영역 구동 TR의 W/L 비와 다르다.</span></li>
+    </ol>
+    <details><summary>영문 원문</summary><div class="orig">An array substrate, comprising: a base substrate; and a plurality of sub-pixel regions on the base substrate; wherein each of the sub-pixel regions comprises: a pixel driving circuit comprising a driving transistor; a white electroluminescent device connected with the pixel driving circuit; and a color resist layer corresponding to the each sub-pixel region; wherein different sub-pixel regions correspond to different color resist layers with different colors; wherein the plurality of sub-pixel regions at least comprise: a first-color sub-pixel region; a second-color sub-pixel region; and a third-color sub-pixel region; and wherein an area of the first-color sub-pixel region is greater than an area of the second-color sub-pixel region, and the area of the second-color sub-pixel region is greater than an area of the third-color sub-pixel region; and a width-to-length ratio of a channel region of a driving transistor in the first-color sub-pixel region is different from a width-to-length ratio of a channel region of a driving transistor in the second-color sub-pixel region and a width-to-length ratio of a channel region of a driving transistor in the third-color sub-pixel region.</div></details>
+  </article>
+
+  <article class="claim">
+    <div class="claim-head"><span class="n">청구항 20 (출원 21)</span><span class="chip c-ok">독립 · 07-09 신규 → RCE 후 허여</span><a class="src" href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf#page=5" target="_blank" rel="noopener">최종 보정본 p.5–6</a></div>
+    <p>어레이 기판으로서,</p>
+    <ol class="el">
+      <li>청구항 15와 같은 기판·서브픽셀·구동회로·백색 발광소자·컬러 레지스트층 구성,</li>
+      <li>제1색 영역 면적 &gt; 제2색 &gt; 제3색이고,</li>
+      <li><span class="key">같은 데이터 전압으로 구동할 때 제1색·제2색·제3색 영역의 발광 휘도가 실질적으로 일치한다.</span></li>
+    </ol>
+    <p class="muted" style="font-size:13.5px">Final에서 심사관이 제안한 "휘도 관련 한정" 방향을 따른 청구항입니다.</p>
+    <details><summary>영문 원문</summary><div class="orig">An array substrate, comprising: a base substrate; and a plurality of sub-pixel regions on the base substrate; wherein each of the sub-pixel regions comprises: a pixel driving circuit; a white electroluminescent device connected with the pixel driving circuit; and a color resist layer corresponding to the each sub-pixel region; wherein different sub-pixel regions correspond to different color resist layers with different colors; wherein the plurality of sub-pixel regions at least comprise: a first-color sub-pixel region; a second-color sub-pixel region; and a third-color sub-pixel region; and wherein an area of the first-color sub-pixel region is greater than an area of the second-color sub-pixel region, and the area of the second-color sub-pixel region is greater than an area of the third-color sub-pixel region; and light emitting brightness of the first-color sub-pixel region, the second-color sub-pixel region, and the third-color sub-pixel region are substantially consistent under drive of a same data voltage.</div></details>
+  </article>
+
+</section>
+
+<section id="takeaway">
+  <h2><span class="no">10</span>시사점</h2>
+  <ol class="points">
+    <li><b>권리의 중심은 W/L 비입니다.</b> 세 독립항 중 둘(1, 15)이 구동 트랜지스터 W/L 한정에 기대고 있습니다. 서브픽셀 면적 순서만으로는 Jung + Kim + Yu에 막혔습니다.</li>
+    <li><b>청구항 15의 W/L 한정은 넓습니다.</b> "1색 W/L이 2색·3색과 다르다"만 요구하고 크기 순서는 정하지 않습니다. 청구항 1보다 회피 설계가 어렵습니다.</li>
+    <li><b>청구항 20은 기능 한정입니다.</b> 면적 순서 + 같은 데이터 전압에서 휘도 일치. 트랜지스터 구조와 상관없이 결과로 정의되어 침해 판단 때 해석 여지가 큽니다.</li>
+    <li><b>1차 응답은 논리 싸움만 했습니다.</b> 04-29 응답은 W/L 같은 새 한정 없이 "Kim과 Yu는 결합할 수 없다"는 주장에 걸었고, Final에서 받아들여지지 않았습니다. 이미 허여된 청구항 1의 W/L 개념을 그때 13에 넣었다면 Final과 RCE를 피할 수 있었을 것입니다.</li>
+    <li><b>Final 후 대응도 아쉬웠습니다.</b> 07-09 의견서에서 전화 인터뷰를 요청해 놓고, 심사관이 07-16에 두 번 전화했을 때 받지 않았습니다. 결국 RCE 비용과 시간이 들었습니다.</li>
+    <li><b>무효 검토 출발점:</b> Advisory에서 언급된 Minami(US 2017/0124948)는 거절에 쓰이지 않았습니다. 청구항 15·20의 무효 자료로 다시 볼 만합니다.</li>
+  </ol>
+</section>
+
+<section id="docs">
+  <h2><span class="no">11</span>원문 서류</h2>
+  <p class="muted">본문의 <a class="src" href="#docs" style="margin-left:0">문서 p.N</a> 표시는 아래 PDF 파일의 쪽 번호(파일 첫 장 = p.1)입니다. 서류 안에 인쇄된 쪽 번호와 다를 수 있습니다. 누르면 이 페이지 안의 뷰어에서 해당 쪽이 열리고, ‹ › 버튼이나 방향키로 앞뒤 쪽을 넘길 수 있습니다.</p>
+  <div class="tbl-wrap"><table class="doclist">
+    <thead><tr><th>날짜</th><th>서류</th><th>본문 표기</th><th>쪽수</th></tr></thead>
+    <tbody>
+      <tr><td>2021-02-03</td><td><a href="US11210989-docs/01_2021-02-03_NonFinal_CTNF.pdf" target="_blank" rel="noopener">Non-Final Rejection (CTNF)</a></td><td>Non-Final</td><td class="mono">11</td></tr>
+      <tr><td>2021-04-29</td><td><a href="US11210989-docs/02_2021-04-29_Response_Cover.pdf" target="_blank" rel="noopener">1차 응답 표지 (Response to Non-Final)</a></td><td>표지</td><td class="mono">1</td></tr>
+      <tr><td>2021-04-29</td><td><a href="US11210989-docs/03_2021-04-29_Claims_CLM.pdf" target="_blank" rel="noopener">보정 청구항 (CLM)</a></td><td>보정①</td><td class="mono">5</td></tr>
+      <tr><td>2021-04-29</td><td><a href="US11210989-docs/04_2021-04-29_Remarks_REM.pdf" target="_blank" rel="noopener">의견서 (REM)</a></td><td>의견서①</td><td class="mono">6</td></tr>
+      <tr><td>2021-05-11</td><td><a href="US11210989-docs/05_2021-05-11_Final_CTFR.pdf" target="_blank" rel="noopener">Final Rejection (CTFR)</a></td><td>Final</td><td class="mono">12</td></tr>
+      <tr><td>2021-07-09</td><td><a href="US11210989-docs/06_2021-07-09_AFAmendment_Cover.pdf" target="_blank" rel="noopener">Final 후 보정 표지 (37 CFR 1.116)</a></td><td>보정② 표지</td><td class="mono">1</td></tr>
+      <tr><td>2021-07-09</td><td><a href="US11210989-docs/07_2021-07-09_Claims_CLM.pdf" target="_blank" rel="noopener">보정 청구항 (CLM) — 등록 청구항의 최종 보정본</a></td><td>보정②</td><td class="mono">6</td></tr>
+      <tr><td>2021-07-09</td><td><a href="US11210989-docs/08_2021-07-09_Remarks_REM.pdf" target="_blank" rel="noopener">의견서 (REM)</a></td><td>의견서②</td><td class="mono">3</td></tr>
+      <tr><td>2021-07-26</td><td><a href="US11210989-docs/09_2021-07-26_Interview_EXIN.pdf" target="_blank" rel="noopener">심사관 인터뷰 요약 (PTOL-413)</a></td><td>인터뷰</td><td class="mono">1</td></tr>
+      <tr><td>2021-07-26</td><td><a href="US11210989-docs/10_2021-07-26_Advisory_CTAV.pdf" target="_blank" rel="noopener">Advisory Action (PTOL-303)</a></td><td>Advisory</td><td class="mono">3</td></tr>
+      <tr><td>2021-07-26</td><td><a href="US11210989-docs/11_2021-07-26_AFAmendment_DoNotEnter.pdf" target="_blank" rel="noopener">Final 후 보정 — 심사관 "DO NOT ENTER" 표시본 (ANE.I)</a></td><td>미반영 표시</td><td class="mono">1</td></tr>
+      <tr><td>2021-08-18</td><td><a href="US11210989-docs/12_2021-08-18_NOA.pdf" target="_blank" rel="noopener">Notice of Allowance · Notice of Allowability</a></td><td>NOA</td><td class="mono">5</td></tr>
+      <tr><td>2021-08-18</td><td><a href="US11210989-docs/13_2021-08-18_IssueClassification_IIFW.pdf" target="_blank" rel="noopener">Issue Classification (분류·재번호표)</a></td><td>Issue Class.</td><td class="mono">3</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="note">
+  <p><b>출처.</b> USPTO Global Dossier 원문 13건을 직접 읽고 정리했습니다. Non-Final(02-03), 1차 응답 표지·보정 청구항·의견서(04-29), Final(05-11), Final 후 보정 표지·보정 청구항·의견서(07-09), 심사관 인터뷰 요약·Advisory Action·미반영 표시 보정서(07-26), Notice of Allowance·Issue Classification(08-18)입니다. 서지사항과 등록 청구항 문언은 특허 DB, 경과 날짜는 USPTO Transaction History입니다.</p>
+  <p><b>한계.</b> 출원 당시 청구항 원문(07-31)과 인용문헌 본문은 읽지 않았습니다. 인용문헌 내용은 심사관과 출원인이 서류에 적은 설명을 따랐습니다. 번역은 이해를 돕기 위한 요약 번역입니다.</p>
+  <p class="mono">작성 2026-11-18</p>
+</div>
+</main>
+</div>
+
+<div class="pv" id="pv" hidden role="dialog" aria-modal="true" aria-labelledby="pv-title">
+  <div class="pv-box">
+    <div class="pv-bar">
+      <span class="pv-title" id="pv-title">원문</span>
+      <span class="pv-nav">
+        <button type="button" id="pv-prev" aria-label="이전 쪽">‹</button>
+        <span id="pv-page">p.1 / 1</span>
+        <button type="button" id="pv-next" aria-label="다음 쪽">›</button>
+      </span>
+      <button type="button" id="pv-close">닫기</button>
+    </div>
+    <div class="pv-body" id="pv-body"><div class="pv-msg">불러오는 중…</div></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 항목 제목을 누르면 접기·펼치기. 목차를 누르면 해당 항목으로 이동(접혀 있으면 펼침).
+  var secs=[].slice.call(document.querySelectorAll('main section[id]'));
+  secs.forEach(function(s){
+    var h2=s.querySelector(':scope > h2'); if(!h2) return;
+    var btn=document.createElement('button');
+    btn.type='button'; btn.className='sec-head'; btn.setAttribute('aria-expanded','true'); btn.setAttribute('aria-controls', s.id+'-body');
+    s.insertBefore(btn,h2); btn.appendChild(h2);
+    var chev=document.createElement('span'); chev.className='chev'; chev.setAttribute('aria-hidden','true'); chev.textContent='▾'; btn.appendChild(chev);
+    var body=document.createElement('div'); body.className='sec-body'; body.id=s.id+'-body';
+    while(btn.nextSibling) body.appendChild(btn.nextSibling);
+    s.appendChild(body);
+    btn.addEventListener('click',function(){ setOpen(s, s.classList.contains('closed')); });
+  });
+  function setOpen(s, open){
+    s.classList.toggle('closed', !open);
+    var b=s.querySelector(':scope > .sec-head'), body=s.querySelector(':scope > .sec-body');
+    if(b) b.setAttribute('aria-expanded', open?'true':'false');
+    if(body) body.hidden=!open;
+  }
+  function go(id){
+    var s=document.getElementById(id); if(!s || s.tagName!=='SECTION') return;
+    setOpen(s,true); s.scrollIntoView({block:'start'});
+  }
+  document.querySelectorAll('nav.toc a').forEach(function(a){
+    a.addEventListener('click',function(e){ e.preventDefault(); var id=a.getAttribute('href').slice(1); history.replaceState(null,'','#'+id); go(id); });
+  });
+  document.querySelectorAll('.toc-all [data-all]').forEach(function(t){
+    t.addEventListener('click',function(){ var open=t.dataset.all==='open'; secs.forEach(function(s){ setOpen(s,open); }); });
+  });
+  window.addEventListener('hashchange',function(){ go(location.hash.slice(1)); });
+  if(location.hash) go(location.hash.slice(1));
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  var pv=document.getElementById('pv'), body=document.getElementById('pv-body'),
+      titleEl=document.getElementById('pv-title'), pageEl=document.getElementById('pv-page'),
+      prev=document.getElementById('pv-prev'), next=document.getElementById('pv-next');
+  var cache={}, doc=null, cur=1, lastFocus=null, token=0;
+  var names={};
+  document.querySelectorAll('.doclist a').forEach(function(a){ names[a.getAttribute('href')]=a.textContent.trim(); });
+
+  function msg(t){ body.innerHTML=''; var d=document.createElement('div'); d.className='pv-msg'; d.textContent=t; body.appendChild(d); }
+  function load(url){
+    if(!cache[url]){
+      cache[url]=fetch(url).then(function(r){ if(!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then(function(buf){ return pdfjsLib.getDocument({data:buf}).promise; });
+      cache[url].catch(function(){ delete cache[url]; });
+    }
+    return cache[url];
+  }
+  function render(){
+    var my=++token;
+    pageEl.textContent='p.'+cur+' / '+doc.numPages;
+    prev.disabled=cur<=1; next.disabled=cur>=doc.numPages;
+    doc.getPage(cur).then(function(page){
+      if(my!==token) return;
+      var w=Math.max(280,body.clientWidth-24), base=page.getViewport({scale:1});
+      var scale=w/base.width, dpr=window.devicePixelRatio||1;
+      var vp=page.getViewport({scale:scale*dpr});
+      var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      c.style.width=(vp.width/dpr)+'px';
+      c.setAttribute('aria-label',titleEl.textContent+' '+cur+'쪽');
+      return page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise.then(function(){
+        if(my!==token) return; body.innerHTML=''; body.appendChild(c); body.scrollTop=0;
+      });
+    }).catch(function(){ msg('이 쪽을 그리지 못했습니다.'); });
+  }
+  function open(href){
+    var i=href.indexOf('#page='), url=i<0?href:href.slice(0,i), p=i<0?1:parseInt(href.slice(i+6),10)||1;
+    lastFocus=document.activeElement;
+    titleEl.textContent=names[url]||url.split('/').pop();
+    pv.hidden=false; document.body.style.overflow='hidden';
+    msg('불러오는 중…'); pageEl.textContent='p.'+p;
+    document.getElementById('pv-close').focus();
+    if(typeof pdfjsLib==='undefined'){ msg('PDF 뷰어를 불러오지 못했습니다. 네트워크를 확인한 뒤 새로고침해 주세요.'); return; }
+    load(url).then(function(d){ doc=d; cur=Math.min(Math.max(1,p),d.numPages); render(); })
+      .catch(function(){ msg('PDF 파일을 불러오지 못했습니다.'); });
+  }
+  function close(){ pv.hidden=true; document.body.style.overflow=''; doc=null; token++; if(lastFocus) lastFocus.focus(); }
+
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="US11210989-docs/"]');
+    if(!a) return;
+    e.preventDefault(); open(a.getAttribute('href'));
+  });
+  prev.addEventListener('click',function(){ if(doc&&cur>1){cur--;render();} });
+  next.addEventListener('click',function(){ if(doc&&cur<doc.numPages){cur++;render();} });
+  document.getElementById('pv-close').addEventListener('click',close);
+  pv.addEventListener('click',function(e){ if(e.target===pv) close(); });
+  document.addEventListener('keydown',function(e){
+    if(pv.hidden) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowLeft') prev.click();
+    else if(e.key==='ArrowRight') next.click();
+  });
+  window.addEventListener('resize',function(){ if(doc&&!pv.hidden) render(); });
+})();
+</script>
+
+</body></html>
