@@ -127,6 +127,19 @@ svg .bgc{fill:var(--surface)}
 .rt td:not(:first-child),.rt th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;width:72px}
 .rt .chips,.rt td:first-child{white-space:nowrap}
 .rt .m{font-size:12px;color:var(--muted)}
+.ft .and{font-size:11.5px;font-weight:700;color:var(--muted);margin:0 5px;letter-spacing:.04em}
+.ft .ar{color:var(--k-t4);font-size:11px;margin-right:6px}
+.ft tr.l0 td{font-weight:700;background:var(--bg)}
+.ft tr.l1 td:first-child{padding-left:18px}
+.ft tr.l2 td:first-child{padding-left:34px}
+.ft tr.l3 td:first-child{padding-left:50px}
+.ft tr.l2 td{background:color-mix(in srgb,var(--k-t4) 9%,var(--surface))}
+.ft tr.l3 td{background:color-mix(in srgb,var(--k-t2) 8%,var(--surface))}
+.ft tr.gap td{font-size:12px;color:var(--muted);background:var(--bg);padding:6px 10px;font-weight:600}
+.ft tr.fr td:first-child{padding-left:18px}
+.ft tr.f2 td:first-child{padding-left:34px}
+.ft tr.f3 td:first-child{padding-left:50px}
+
 .rt tr.fr td{background:color-mix(in srgb,var(--k-str) 8%,var(--surface))}
 .rt .dc{font-size:12px;color:var(--muted);font-weight:400}
 .chip.tgv{background:var(--k-t4);color:var(--surface);border-color:var(--k-t4);font-weight:700}
@@ -633,19 +646,21 @@ details.sec{box-shadow:var(--sh)}
 <p><b>판별 기준</b> 독립항에 <b class="hlt">표시 기판(유리·플라스틱·폴리이미드)을 두께 방향으로 지나 반대면과 금속(전극·배선·패드·도전체)으로 잇는 구조</b>가 있으면 TGV로 봅니다. 기판은 <b>1 기판 규칙의 범위 그대로</b>(유리·플라스틱·재질 없이 '기판')이므로 유리만 TGV로 보지 않습니다. '관통'이라는 말이 없어도 구조가 같으면 TGV입니다. 목적이 아니라 <b>독립항에 적힌 구조</b>로 판별합니다.</p>
 <ul><li>기판 관통홀의 도전체 → 기판 뒷면의 COF·구동칩·회로기판 (예: LGD 10-2018-0057773)</li><li>기판 한쪽 면의 구동 소자 ↔ 반대쪽 면의 발광 소자를 관통홀로 연결 (예: LGD 10-2018-0045942)</li><li>패널 아래 유리 플레이트·금속 기판까지 금속으로 이어짐 (예: SDC 10-2026-0024506, LGD 10-2578350)</li></ul>
 </div>
-<p class="note">TGV로 판별한 특허에 태그를 더 붙였습니다. 기판 뒷면에 부품이 붙으면 <span class="chip" style="--kc:var(--k-t4)">부품 실장</span>, 청구항에 타일 언급이 있으면 <span class="chip" style="--kc:var(--k-t2)">타일드</span>. 한 특허에 둘 다 붙을 수 있어 조합별로 한 줄씩 셉니다. 숫자는 <b>WIPS 패밀리 수</b>, 괄호는 문헌 수(공개·등록·분할·계속출원을 따로 센 수). 패밀리 안에 TGV 문헌이 하나라도 있으면 TGV 패밀리로, 태그 조합은 <b>한 문헌이 그 조합을 모두 만족할 때만</b> 셉니다. 예: TGV + 부품 실장 = 같은 문헌에 TGV와 부품 실장이 함께 있음. 패밀리 안 다른 문헌의 태그를 섞지 않고, 태그가 가장 많이 맞는 문헌 하나로 패밀리를 셉니다. 근거 = 독립항 · 2026-11-19</p>
-<div class="tbl rt"><table>
-<thead><tr><th>태그 조합</th><th>SDC</th><th>LGD</th><th>Apple</th></tr></thead>
+<p class="note">최종 모수에서 시작해 <b>필터를 하나씩 더할수록</b> 남는 수가 줄어듭니다. 각 줄은 위 줄의 조건을 모두 만족하고, <b>한 문헌이 그 조건을 모두 만족할 때만</b> 셉니다. 숫자는 <b>WIPS 패밀리 수</b>, 괄호는 문헌 수(공개·등록·분할·계속출원을 따로 센 수). 패밀리는 조건을 만족하는 문헌이 하나라도 있으면 셉니다. 근거 = 독립항 · 2026-11-19</p>
+<div class="tbl rt ft"><table>
+<thead><tr><th>필터</th><th>SDC</th><th>LGD</th><th>Apple</th></tr></thead>
 <tbody>
-<tr><td><span class="chip tgv">TGV</span> <span class="m">만</span></td><td><b>27</b> <span class="dc">(37)</span></td><td><b>6</b> <span class="dc">(9)</span></td><td><b>3</b> <span class="dc">(14)</span></td></tr>
-<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>37</b> <span class="dc">(47)</span></td><td><b>9</b> <span class="dc">(13)</span></td><td><b>6</b> <span class="dc">(20)</span></td></tr>
-<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>15</b> <span class="dc">(28)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>0</b> <span class="dc">(0)</span></td></tr>
-<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span> + <span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>19</b> <span class="dc">(32)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>1</b> <span class="dc">(1)</span></td></tr>
-<tr class="sum"><td>= TGV 합계</td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(35)</span></td></tr>
-<tr><td><span class="chip" style="--kc:var(--muted)">경계</span> <span class="m">사용자 직접 검토</span></td><td><b>4</b> <span class="dc">(6)</span></td><td><b>4</b> <span class="dc">(4)</span></td><td><b>1</b> <span class="dc">(3)</span></td></tr>
-<tr class="tot"><td>= 최종 모수</td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(38)</span></td></tr>
-<tr class="fr"><td><span class="chip" style="--kc:var(--k-str)">1차 보고</span> <span class="m">TGV로 남음 · 문헌(패밀리)</span></td><td><b>34/34</b> <span class="dc">(34)</span></td><td><b>7/7</b> <span class="dc">(6)</span></td><td><span class="m">참고 세트</span></td></tr>
-<tr class="fr"><td><span class="m">└ 그중</span> <span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span> <span class="m">둘 다 만족</span></td><td><b>26/34</b> <span class="dc">(26)</span></td><td><b>6/7</b> <span class="dc">(5)</span></td><td></td></tr>
+<tr class="l0"><td>최종 모수 <span class='m'>TGV + 경계</span></td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(38)</span></td></tr>
+<tr class="l1 sum"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span></td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(35)</span></td></tr>
+<tr class="l2"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>56</b> <span class="dc">(79)</span></td><td><b>9</b> <span class="dc">(13)</span></td><td><b>7</b> <span class="dc">(21)</span></td></tr>
+<tr class="l3"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>19</b> <span class="dc">(32)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>1</b> <span class="dc">(1)</span></td></tr>
+<tr class="gap"><td colspan="4">다른 조합</td></tr>
+<tr class="lx"><td><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>34</b> <span class="dc">(60)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>1</b> <span class="dc">(1)</span></td></tr>
+<tr class="lx"><td><span class="chip" style="--kc:var(--muted)">경계</span> <span class='m'>최종 모수 − TGV · 사용자 직접 검토</span></td><td><b>4</b> <span class="dc">(6)</span></td><td><b>4</b> <span class="dc">(4)</span></td><td><b>1</b> <span class="dc">(3)</span></td></tr>
+<tr class="gap"><td colspan="4"><span class="chip" style="--kc:var(--k-str)">1차 보고</span> 같은 필터를 걸었을 때 남는 수 · 문헌(패밀리)</td></tr>
+<tr class="fr"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span></td><td><b>34/34</b> <span class="dc">(34)</span></td><td><b>7/7</b> <span class="dc">(6)</span></td><td><span class="m">참고 세트</span></td></tr>
+<tr class="fr f2"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>26/34</b> <span class="dc">(26)</span></td><td><b>6/7</b> <span class="dc">(5)</span></td><td></td></tr>
+<tr class="fr f3"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>12/34</b> <span class="dc">(12)</span></td><td><b>0/7</b></td><td></td></tr>
 </tbody></table></div>
 <div class="tbl"><table>
 <thead><tr><th>태그</th><th>붙는 조건</th></tr></thead>
