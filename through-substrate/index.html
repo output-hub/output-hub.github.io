@@ -340,7 +340,8 @@ details.mini>summary{font-size:13px;color:var(--muted);padding:8px 14px}
 .fnr:has(.fnb span[style*="--k-t4"]) .fnb span{background-color:var(--k-t4)}
 .tbl.rt{border-radius:16px;box-shadow:var(--sh);overflow:hidden}
 .rt table{background:var(--surface)}
-.rt tr.sum td{background:linear-gradient(90deg,color-mix(in srgb,var(--k-t4) 22%,var(--surface)),color-mix(in srgb,var(--k-t4) 8%,var(--surface)))}
+.rt tr.sum td{background:color-mix(in srgb,var(--k-t4) 16%,var(--surface))}
+.hlt{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--k-t4) 30%,transparent) 55%);color:var(--k-t4);padding:0 2px}
 .chip.tgv{background:linear-gradient(135deg,var(--k-t4),color-mix(in srgb,var(--k-t4) 65%,#000));box-shadow:0 3px 8px -3px var(--k-t4)}
 .tgvdef{border:0;box-shadow:var(--sh2);background:linear-gradient(160deg,color-mix(in srgb,var(--k-t4) 12%,var(--surface)),var(--surface) 55%);border-left:6px solid var(--k-t4)}
 details.sec{box-shadow:var(--sh)}
@@ -629,10 +630,10 @@ details.sec{box-shadow:var(--sh)}
 <div class="tgvdef">
 <div class="tgvh"><span class="chip tgv">TGV</span> 이 분석에서 TGV를 이렇게 판별했습니다</div>
 <p><b>원래 뜻</b> TGV(Through Glass Via)는 유리 기판을 두께 방향으로 뚫고 그 구멍을 금속으로 채워 앞면과 뒷면을 전기적으로 잇는 구조입니다. 주로 반도체 패키징(유리 인터포저·유리 코어 기판)에서 쓰는 말이고, <b>디스플레이 특허에는 이 단어가 거의 나오지 않습니다</b>. 대신 컨택홀·관통홀·비아홀·오픈부·개구부라고 씁니다.</p>
-<p><b>판별 기준</b> 독립항에 <b>표시 기판(유리·플라스틱·폴리이미드)을 두께 방향으로 지나 반대면과 금속(전극·배선·패드·도전체)으로 잇는 구조</b>가 있으면 TGV로 봅니다. 기판은 <b>1 기판 규칙의 범위 그대로</b>(유리·플라스틱·재질 없이 '기판')이므로 유리만 TGV로 보지 않습니다. '관통'이라는 말이 없어도 구조가 같으면 TGV입니다. 목적이 아니라 <b>독립항에 적힌 구조</b>로 판별합니다.</p>
+<p><b>판별 기준</b> 독립항에 <b class="hlt">표시 기판(유리·플라스틱·폴리이미드)을 두께 방향으로 지나 반대면과 금속(전극·배선·패드·도전체)으로 잇는 구조</b>가 있으면 TGV로 봅니다. 기판은 <b>1 기판 규칙의 범위 그대로</b>(유리·플라스틱·재질 없이 '기판')이므로 유리만 TGV로 보지 않습니다. '관통'이라는 말이 없어도 구조가 같으면 TGV입니다. 목적이 아니라 <b>독립항에 적힌 구조</b>로 판별합니다.</p>
 <ul><li>기판 관통홀의 도전체 → 기판 뒷면의 COF·구동칩·회로기판 (예: LGD 10-2018-0057773)</li><li>기판 한쪽 면의 구동 소자 ↔ 반대쪽 면의 발광 소자를 관통홀로 연결 (예: LGD 10-2018-0045942)</li><li>패널 아래 유리 플레이트·금속 기판까지 금속으로 이어짐 (예: SDC 10-2026-0024506, LGD 10-2578350)</li></ul>
 </div>
-<p class="note">TGV로 판별한 특허에 태그를 더 붙였습니다. 기판 뒷면에 부품이 붙으면 <span class="chip" style="--kc:var(--k-t4)">부품 실장</span>, 청구항에 타일 언급이 있으면 <span class="chip" style="--kc:var(--k-t2)">타일드</span>. 한 특허에 둘 다 붙을 수 있어 조합별로 한 줄씩 셉니다. 숫자는 <b>WIPS 패밀리 수</b>, 괄호는 문헌 수(공개·등록·분할·계속출원을 따로 센 수). 패밀리 안에 TGV 문헌이 하나라도 있으면 TGV 패밀리로, 태그는 패밀리 안 TGV 문헌의 태그를 합쳐 셉니다. 근거 = 독립항 · 2026-11-19</p>
+<p class="note">TGV로 판별한 특허에 태그를 더 붙였습니다. 기판 뒷면에 부품이 붙으면 <span class="chip" style="--kc:var(--k-t4)">부품 실장</span>, 청구항에 타일 언급이 있으면 <span class="chip" style="--kc:var(--k-t2)">타일드</span>. 한 특허에 둘 다 붙을 수 있어 조합별로 한 줄씩 셉니다. 숫자는 <b>WIPS 패밀리 수</b>, 괄호는 문헌 수(공개·등록·분할·계속출원을 따로 센 수). 패밀리 안에 TGV 문헌이 하나라도 있으면 TGV 패밀리로, 태그 조합은 <b>한 문헌이 그 조합을 모두 만족할 때만</b> 셉니다. 예: TGV + 부품 실장 = 같은 문헌에 TGV와 부품 실장이 함께 있음. 패밀리 안 다른 문헌의 태그를 섞지 않고, 태그가 가장 많이 맞는 문헌 하나로 패밀리를 셉니다. 근거 = 독립항 · 2026-11-19</p>
 <div class="tbl rt"><table>
 <thead><tr><th>태그 조합</th><th>SDC</th><th>LGD</th><th>Apple</th></tr></thead>
 <tbody>
@@ -643,13 +644,14 @@ details.sec{box-shadow:var(--sh)}
 <tr class="sum"><td>= TGV 합계</td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(35)</span></td></tr>
 <tr><td><span class="chip" style="--kc:var(--muted)">경계</span> <span class="m">사용자 직접 검토</span></td><td><b>4</b> <span class="dc">(6)</span></td><td><b>4</b> <span class="dc">(4)</span></td><td><b>1</b> <span class="dc">(3)</span></td></tr>
 <tr class="tot"><td>= 최종 모수</td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(38)</span></td></tr>
-<tr class="fr"><td><span class="chip" style="--kc:var(--k-str)">1차 보고</span> <span class="m">모두 TGV로 남음 · 문헌(패밀리)</span></td><td><b>34/34</b> <span class="dc">(34)</span></td><td><b>7/7</b> <span class="dc">(6)</span></td><td><span class="m">참고 세트</span></td></tr>
+<tr class="fr"><td><span class="chip" style="--kc:var(--k-str)">1차 보고</span> <span class="m">TGV로 남음 · 문헌(패밀리)</span></td><td><b>34/34</b> <span class="dc">(34)</span></td><td><b>7/7</b> <span class="dc">(6)</span></td><td><span class="m">참고 세트</span></td></tr>
+<tr class="fr"><td><span class="m">└ 그중</span> <span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span> <span class="m">둘 다 만족</span></td><td><b>26/34</b> <span class="dc">(26)</span></td><td><b>6/7</b> <span class="dc">(5)</span></td><td></td></tr>
 </tbody></table></div>
 <div class="tbl"><table>
 <thead><tr><th>태그</th><th>붙는 조건</th></tr></thead>
 <tbody>
 <tr><td><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td>구동칩·연성필름·회로기판이 기판 반대면에 붙음</td></tr>
-<tr><td><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td>타일 한정 독립항도 있음. 타일 한정 없는 TGV 독립항이 따로 있어 남김</td></tr>
+<tr><td><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td>독립항 중 하나라도 ‘타일형(여러 장을 이어 붙인) 표시 장치’로 적혀 있음. 다른 독립항은 타일 없이 TGV만 청구하므로 빼지 않고 태그만 붙임</td></tr>
 <tr><td><span class="chip" style="--kc:var(--muted)">경계</span></td><td>뚫는 대상이 표시 기판이 아니거나(프레임·봉지 기판·금속 베이스), 대표항만으로 관통이 확인 안 됨</td></tr>
 </tbody></table></div>
 <p class="note" style="font-size:12.5px">예시 — LGD 10-2016-0038959 (사용자가 고른 타일드 예시): 도면에는 여러 장을 잇는 타일이 나오지만 청구항에는 타일 한정이 없어 <b>TGV</b>만 붙고 타일드 태그는 붙지 않습니다. 태그는 도면이 아니라 독립항으로 붙입니다.</p>
