@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>기판 관통 추출 규칙 해설</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 한 줄 흐름의 논증 문서. 데스크톱은 왼쪽 고정 목차 + 본문, 폰은 한 열. 각 단계 = 결정 → 왜 → 근거 사례. 개념도는 단면 그림 + 판정 카드 */
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --fg:#18202B; --muted:#5A6573; --line:#D9DEE5;
+  --accent:#1F4FB8; --accent-soft:#E6EDFB;
+  --in:#1D7A4C; --in-soft:#E3F3EA; --ex:#B23A2E; --ex-soft:#F8E6E3; --q:#9A6A00; --q-soft:#FBF0D6;
+  --c-sub:#B9CBE4; --c-sub2:#D3DEEE; --c-tft:#D9CFF0; --c-metal:#D49A1F; --c-film:#9ED3BE; --c-ins:#E4E7EB; --c-chip:#5E6B7C;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161D; --surface:#1A2029; --fg:#E4E8EE; --muted:#9AA5B3; --line:#2C3542;
+  --accent:#7FA4F5; --accent-soft:#1E2B45;
+  --in:#5FC78F; --in-soft:#17301F; --ex:#F08A7E; --ex-soft:#3A1E1B; --q:#E5B54A; --q-soft:#3A2E12;
+  --c-sub:#3B5478; --c-sub2:#2E4260; --c-tft:#4B4170; --c-metal:#E0AE45; --c-film:#2F6B57; --c-ins:#39414D; --c-chip:#8E9BAD; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161D; --surface:#1A2029; --fg:#E4E8EE; --muted:#9AA5B3; --line:#2C3542;
+  --accent:#7FA4F5; --accent-soft:#1E2B45;
+  --in:#5FC78F; --in-soft:#17301F; --ex:#F08A7E; --ex-soft:#3A1E1B; --q:#E5B54A; --q-soft:#3A2E12;
+  --c-sub:#3B5478; --c-sub2:#2E4260; --c-tft:#4B4170; --c-metal:#E0AE45; --c-film:#2F6B57; --c-ins:#39414D; --c-chip:#8E9BAD; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15.5px;line-height:1.7}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13.5px}
+nav ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+nav a{color:var(--muted);text-decoration:none;display:block;padding:2px 0}
+nav a:hover,nav a:focus-visible{color:var(--accent)}
+nav .lbl{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;text-transform:uppercase}
+main{min-width:0;max-width:820px}
+h1{font-size:30px;line-height:1.3;margin:0 0 8px;text-wrap:balance;font-weight:700}
+.sub{color:var(--muted);margin:0 0 20px}
+h2{font-size:21px;margin:56px 0 4px;text-wrap:balance;scroll-margin-top:24px}
+h2 .no{font-family:var(--f-mono);font-size:13px;color:var(--accent);display:block;letter-spacing:.05em;margin-bottom:2px}
+h3{font-size:16px;margin:24px 0 6px}
+p{margin:10px 0}
+.decide{background:var(--accent-soft);border-left:3px solid var(--accent);padding:12px 16px;margin:16px 0;border-radius:2px}
+.decide b{color:var(--accent)}
+.why{margin:12px 0}
+.why::before{content:"왜";font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--surface);background:var(--fg);padding:1px 7px;border-radius:2px;margin-right:8px;vertical-align:1px}
+.case{border:1px solid var(--line);background:var(--surface);padding:12px 16px;margin:14px 0;font-size:14.5px;border-radius:2px}
+.case .tag{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);letter-spacing:.05em;display:block;margin-bottom:4px}
+blockquote{margin:8px 0;padding:6px 12px;border-left:2px solid var(--line);color:var(--muted);font-size:14px}
+.rid{font-family:var(--f-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);padding:0 5px;border-radius:2px;white-space:nowrap}
+.tbl{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:12.5px;background:var(--bg)}
+td.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.pill{font-size:12px;padding:1px 8px;border-radius:999px;white-space:nowrap;font-weight:500}
+.p-in{background:var(--in-soft);color:var(--in)} .p-ex{background:var(--ex-soft);color:var(--ex)} .p-q{background:var(--q-soft);color:var(--q)} .p-tag{background:var(--accent-soft);color:var(--accent)}
+.flow{overflow-x:auto;background:var(--surface);border:1px solid var(--line);padding:16px;margin:16px 0;border-radius:2px}
+.concept{font-size:17px;font-weight:500;border-top:2px solid var(--fg);border-bottom:1px solid var(--line);padding:14px 0;margin:18px 0}
+.note{font-size:13.5px;color:var(--muted);margin:6px 0 0}
+.drop td:first-child{text-decoration:line-through;color:var(--muted)}
+.conclude{border-top:1px solid var(--line);padding-top:10px;margin-top:14px}
+footer{margin-top:56px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* 개념도: 판정 탐색기 */
+.explorer{background:var(--surface);border:1px solid var(--line);border-radius:2px;margin:16px 0;display:grid;grid-template-columns:230px minmax(0,1fr)}
+.cases{border-right:1px solid var(--line);padding:12px;display:grid;gap:14px;align-content:start}
+.grp{display:grid;gap:4px}
+.grp .gl{font-size:11.5px;font-family:var(--f-mono);letter-spacing:.05em;color:var(--muted);margin-bottom:2px}
+.cases button{font:inherit;font-size:13.5px;text-align:left;background:transparent;border:1px solid transparent;color:var(--fg);padding:5px 8px;border-radius:2px;cursor:pointer;line-height:1.4}
+.cases button:hover{background:var(--bg)}
+.cases button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--fg)}
+.cases button small{display:block;color:var(--muted);font-size:11.5px}
+.view{padding:16px;min-width:0}
+.view svg{width:100%;height:auto;display:block;max-width:560px}
+.vhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.vhead strong{font-size:16px}
+.vmeta{font-size:13px;color:var(--muted);margin:4px 0}
+.vquote{font-size:13.5px;border-left:2px solid var(--line);padding:4px 10px;color:var(--muted);margin:8px 0}
+.vwhy{font-size:14.5px;margin:8px 0 0}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin:8px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:14px;height:10px;display:inline-block;border-radius:1px}
+svg .sub{fill:var(--c-sub)} svg .sub2{fill:var(--c-sub2)} svg .tft{fill:var(--c-tft)} svg .metal{fill:var(--c-metal)} svg .film{fill:var(--c-film)} svg .ins{fill:var(--c-ins)} svg .chip{fill:var(--c-chip)}
+svg .wire{fill:none;stroke:var(--c-metal);stroke-width:5;stroke-linejoin:round}
+svg .gone{fill:none;stroke:var(--muted);stroke-dasharray:5 4;stroke-width:1.2}
+svg .lead{stroke:var(--muted);stroke-width:1;fill:none}
+svg .lbl{fill:var(--fg);font-size:12px;font-family:var(--f-body)}
+svg .lbls{fill:var(--muted);font-size:11px;font-family:var(--f-body)}
+svg .hl{fill:none;stroke:var(--ex);stroke-width:2;stroke-dasharray:4 3}
+svg .ok{fill:none;stroke:var(--in);stroke-width:2;stroke-dasharray:4 3}
+svg .bgc{fill:var(--surface)}
+
+/* 합집합 그림 */
+.union{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 0}
+.src{background:var(--surface);border:1px solid var(--line);padding:12px;border-radius:2px;font-size:14px}
+.src b{display:block;margin-bottom:4px}
+.src .ex{color:var(--muted);font-size:12.5px;margin-top:6px}
+.arrow{text-align:center;color:var(--muted);font-size:20px;line-height:1;margin:8px 0}
+.pool{background:var(--accent-soft);border:1px solid var(--accent);padding:12px 14px;border-radius:2px;text-align:center;font-weight:500}
+
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}nav{display:none}h1{font-size:25px}
+  .explorer{grid-template-columns:minmax(0,1fr)} .cases{border-right:0;border-bottom:1px solid var(--line);grid-template-columns:minmax(0,1fr)} .union{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:no-preference){.view{transition:opacity .15s}}
+
+/* v3 추가: 핵심 분류 카드, 태그 트리, 필터 시연, 접기 */
+:root{--k-mat:#2F6FD6;--k-str:#C98A12;--k-t1:#1F8A5B;--k-t2:#7A4FC9;--k-t3:#D2611F;--k-ex:#C0392B;--k-t4:#0E7C86}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--k-mat:#7EAAF2;--k-str:#E7B44C;--k-t1:#5CCB95;--k-t2:#B494F0;--k-t3:#F0975C;--k-ex:#F0897D;--k-t4:#4FC3CB}}
+:root[data-theme="dark"]{--k-mat:#7EAAF2;--k-str:#E7B44C;--k-t1:#5CCB95;--k-t2:#B494F0;--k-t3:#F0975C;--k-ex:#F0897D;--k-t4:#4FC3CB}
+.core{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:16px;margin:16px 0}
+.core-eq{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:4px 0 14px}
+.slot{flex:1 1 150px;min-width:0;border:2px solid var(--kc);border-radius:2px;padding:10px 12px;background:var(--bg)}
+.slot .sl{font-size:12px;font-family:var(--f-mono);color:var(--kc);letter-spacing:.04em;font-weight:500}
+.slot .sv{font-size:15px;font-weight:700;margin-top:2px}
+.slot .sd{font-size:12.5px;color:var(--muted);margin-top:2px}
+.op{align-self:center;font-size:20px;color:var(--muted);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;border:1.5px solid var(--kc);color:var(--fg);padding:1px 8px;border-radius:999px;background:var(--surface);white-space:nowrap}
+.tagres{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:8px 0 12px}
+.trc{border:1px solid var(--line,#ddd);border-radius:12px;padding:12px;background:var(--surface);display:flex;flex-direction:column;gap:8px}
+.trh{font-weight:700;font-size:15px}.trh span{font-weight:400;font-size:12.5px;color:var(--muted);margin-left:6px}
+.chip.big{font-size:16px;padding:3px 14px;border-width:2px}
+.trb{border-top:1px dashed var(--line,#ddd);padding-top:8px}
+.rt td:not(:first-child),.rt th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;width:72px}
+.rt .chips,.rt td:first-child{white-space:nowrap}
+.rt .m{font-size:12px;color:var(--muted)}
+.rt tr.fr td{background:color-mix(in srgb,var(--k-str) 8%,var(--surface))}
+.rt .dc{font-size:12px;color:var(--muted);font-weight:400}
+.chip.tgv{background:var(--k-t4);color:var(--surface);border-color:var(--k-t4);font-weight:700}
+.tgvdef{border:2px solid var(--k-t4);border-radius:12px;padding:12px 16px;margin:8px 0 14px;background:color-mix(in srgb,var(--k-t4) 7%,var(--surface))}
+.tgvdef .tgvh{font-weight:700;font-size:15.5px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.tgvdef p{margin:6px 0}.tgvdef ul{margin:6px 0 0;padding-left:20px}
+.rt tr.sum td{background:color-mix(in srgb,var(--k-t4) 14%,var(--surface));color:var(--fg);font-size:15px}
+.rt tr.sum td:first-child{color:var(--k-t4)}
+.rt tr.sum td{font-weight:700;border-top:2px solid var(--k-t4)}
+.rt tr.tot td{font-weight:800;font-size:15px;border-top:2px solid var(--fg)}
+.chip.dim{opacity:.35}
+.picker{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.picker button,.fbox button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:4px 10px;border-radius:2px;cursor:pointer}
+.picker button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.core-why{font-size:14.5px;margin:10px 0 0}
+.tree{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.branch{border-top:4px solid var(--kc);background:var(--surface);border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 12px;border-radius:2px}
+.branch h4{margin:0;font-size:15px;color:var(--kc)}
+.branch .q{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.branch ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px}
+.branch li.ex-mark{font-weight:700}
+.branch li.ex-mark::after{content:" ← 예시";font-weight:400;color:var(--kc);font-size:12px}
+.fbox{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:14px;margin:14px 0}
+.frow{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:4px 0}
+.frow .fl{font-size:12.5px;color:var(--muted);min-width:76px}
+.frow label{font-size:13.5px;display:inline-flex;gap:5px;align-items:center;cursor:pointer}
+.formula{font-family:var(--f-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);padding:8px 10px;margin:10px 0;overflow-x:auto;white-space:nowrap;border-radius:2px}
+.flist{display:grid;gap:4px;font-size:13.5px}
+.flist div{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:4px 0;border-bottom:1px dashed var(--line)}
+.flist div.out{opacity:.35;text-decoration:line-through}
+.fcount{font-size:13px;color:var(--muted);margin-top:6px}
+pre.code{font-family:var(--f-mono);font-size:12.5px;background:var(--surface);border:1px solid var(--line);padding:12px;overflow-x:auto;line-height:1.55;border-radius:2px;margin:10px 0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin:14px 0}
+details>summary{cursor:pointer;padding:12px 16px;font-weight:600;font-size:14.5px;border-radius:14px}
+details>div{padding:0 14px 12px}
+.sets{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:12px 0}
+.set{border:1px solid var(--line);background:var(--surface);padding:10px 12px;border-radius:2px;font-size:14px}
+.set.bad{border-color:var(--ex)} .set.good{border-color:var(--in)}
+.set .st{font-size:12px;font-weight:700;margin-bottom:4px}
+.set.bad .st{color:var(--ex)} .set.good .st{color:var(--in)}
+.set code{font-family:var(--f-mono);font-size:13px;display:block;margin:4px 0}
+@media (max-width:860px){.tree,.sets{grid-template-columns:minmax(0,1fr)}}
+
+/* v6: 핵심 한 줄, 벤 다이어그램 개념도, 섹션 진행 표시, 제외 목록, 태그 프리셋 */
+:root{--s1:#0E7C86;--s2:#B5527A;--s3:#55657F;--s4:#8A6D1F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--s1:#4FC3CB;--s2:#E68DB1;--s3:#A3B3CC;--s4:#D9B860}}
+:root[data-theme="dark"]{--s1:#4FC3CB;--s2:#E68DB1;--s3:#A3B3CC;--s4:#D9B860}
+.hero{border:2px solid var(--fg);background:var(--surface);padding:14px 16px;margin:18px 0 10px;border-radius:2px;font-size:17px;line-height:1.6;font-weight:500}
+.hero .k{font-weight:700;padding:0 2px;border-bottom:3px solid var(--kc)}
+.venn{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:2px;margin:10px 0 16px;padding:8px}
+.venn svg{display:block;width:100%;min-width:640px;height:auto}
+.venn .ca{fill:var(--k-mat);fill-opacity:.14;stroke:var(--k-mat);stroke-width:2}
+.venn .cb{fill:var(--k-str);fill-opacity:.14;stroke:var(--k-str);stroke-width:2}
+.venn .cx{fill:var(--ex-soft);stroke:var(--k-ex);stroke-width:2;stroke-dasharray:5 4}
+.venn .tg{fill:var(--surface);stroke:var(--k-t2);stroke-width:2.5}
+.venn .ar{stroke:var(--muted);stroke-width:2;fill:none}
+.venn .arh{fill:var(--muted)}
+.venn text{font-family:var(--f-body)}
+.venn .t-h{font-size:16px;font-weight:700}
+.venn .t-b{font-size:13px;fill:var(--fg)}
+.venn .t-m{font-size:12px;fill:var(--muted)}
+.venn .c-a{fill:var(--k-mat)} .venn .c-b{fill:var(--k-str)} .venn .c-x{fill:var(--k-ex)} .venn .c-1{fill:var(--k-t1)} .venn .c-2{fill:var(--k-t2)} .venn .c-3{fill:var(--k-t3)} .venn .c-in{fill:var(--in)}
+.f4{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:4px 0 12px}
+.f4 .slot{flex:1 1 0;min-width:120px}
+.f4 .slot a{color:inherit;text-decoration:none}
+.f4 .slot .no4,.prog .no4{font-family:var(--f-mono);font-size:12px;font-weight:500;color:var(--surface);background:var(--kc);padding:0 6px;border-radius:2px;margin-right:6px}
+.f4 .slot .sv{font-size:14.5px}
+.tagbox{margin:12px 0 0;border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px}
+.trow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px;align-items:start;border-left:4px solid var(--kc);padding:6px 10px;background:var(--bg);border-radius:2px}
+.trow .tn{font-weight:700;color:var(--kc);font-size:14.5px;line-height:1.35}
+.trow .tn small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.trow .chips{gap:5px}
+.prog{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.prog span{display:inline-flex;align-items:center;font-size:13px;border:1.5px solid var(--line);color:var(--muted);padding:3px 10px 3px 4px;border-radius:2px;background:var(--surface)}
+.prog span .no4{background:var(--line);color:var(--muted)}
+.prog span.cur{border-color:var(--kc);color:var(--fg);font-weight:700;background:var(--bg)}
+.prog span.cur .no4{background:var(--kc);color:var(--surface)}
+.prog span.cur::after{content:"✓";margin-left:6px;font-size:13px;color:var(--kc);font-weight:700}
+.flow3{display:grid;grid-template-columns:minmax(0,.8fr) auto minmax(0,1.5fr) auto minmax(0,1.3fr);gap:8px;align-items:stretch;margin:14px 0}
+.fn{border:1.5px solid var(--kc);background:var(--surface);border-radius:2px;padding:10px 12px;font-size:13.5px;min-width:0}
+.fn .h{font-weight:700;color:var(--kc);font-size:15px;margin-bottom:6px}
+.fn .chips{gap:5px}
+.fn.big{border-width:3px;background:var(--accent-soft)}
+.fn.big .h{font-size:18px}
+.fa{align-self:center;color:var(--muted);font-size:22px}
+.exgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px;margin:10px 0;padding:0;list-style:none}
+.exgrid li{display:flex;gap:8px;align-items:baseline;font-size:14px;padding:6px 0;border-bottom:1px solid var(--line)}
+.exgrid .ic{color:var(--k-ex);font-weight:700;font-size:16px;line-height:1}
+.exgrid b{color:var(--k-ex);white-space:nowrap}
+.exgrid .m{color:var(--muted);font-size:12.5px}
+.sgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.sq{border-top:4px solid var(--kc);background:var(--surface);border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 12px;border-radius:2px}
+.sq .h{font-weight:700;color:var(--kc);font-size:14.5px}
+.sq .d{font-size:12.5px;color:var(--muted);margin:2px 0 8px}
+.sq .chips{gap:5px}
+.sx{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--bg);padding:8px 10px;border-radius:2px;font-size:13.5px}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.presets button{font:inherit;font-size:13px;border:1.5px solid var(--k-t2);background:var(--surface);color:var(--fg);padding:5px 12px;border-radius:999px;cursor:pointer}
+.presets button[aria-pressed="true"]{background:var(--k-t2);color:var(--surface)}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;margin:4px 0 10px;padding:8px 10px;background:var(--bg);border-radius:2px}
+.legend2 span{display:inline-flex;align-items:center;gap:6px}
+.legend2 i{width:12px;height:12px;border-radius:999px;border:2px solid var(--kc);display:inline-block}
+@media (max-width:860px){.sgrid,.exgrid{grid-template-columns:minmax(0,1fr)} .flow3{grid-template-columns:minmax(0,1fr)} .fa{transform:rotate(90deg);justify-self:center} .trow{grid-template-columns:minmax(0,1fr)}}
+details.sec{background:transparent;border:0;margin:44px 0 0}
+details.sec>summary{list-style:none;cursor:pointer;border-left:6px solid var(--kc);background:var(--surface);padding:12px 16px;border-radius:2px;display:flex;align-items:center;gap:10px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::after{content:"접기 ▲";margin-left:auto;font-size:12.5px;color:var(--muted);white-space:nowrap}
+details.sec:not([open])>summary::after{content:"펼치기 ▼"}
+details.sec>summary h2{margin:0;font-size:22px;color:var(--fg);line-height:1.4}
+details.sec>summary h2 .no{display:inline;font-family:var(--f-body);font-size:26px;color:var(--kc);font-weight:700;letter-spacing:0;margin:0 12px 0 0}
+details.sec>.secbody{padding:4px 0 0}
+details.expl{margin:44px 0 0}
+details.expl>summary{font-size:17px}
+.openlist{border-left:4px solid var(--k-t2);background:var(--bg);padding:10px 14px;margin:10px 0 14px;font-size:14.5px;border-radius:2px}
+.openlist>b:first-child{color:var(--k-t2);margin-right:4px}
+.banner{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;border-radius:16px;padding:22px 26px;margin:0 0 22px;color:#fff;background:linear-gradient(120deg,#1B2A4A,#25507F 60%,#7A3E8C)}
+.banner .eyebrow{font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.12em;color:rgba(255,255,255,.7);margin:0}
+.banner h1{color:#fff;margin:4px 0 0;font-size:30px}
+.banner .bsub{color:rgba(255,255,255,.82);font-size:14.5px;margin:6px 0 0}
+.banner .bpill{background:rgba(255,255,255,.16);color:#fff;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:500;white-space:nowrap}
+details.sec{border-radius:16px;border:1px solid color-mix(in srgb,var(--kc) 30%,transparent);background:color-mix(in srgb,var(--kc) 5%,var(--bg));padding:14px 18px 18px;margin:28px 0 0}
+details.sec>summary{border-left:0;background:transparent;padding:0;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+details.sec>summary h2{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;font-size:20px}
+details.sec>summary h2 .badge{background:var(--kc);color:#fff;border-radius:12px;padding:3px 14px;font-size:22px;font-weight:800;white-space:nowrap}
+details.sec>summary h2 .ttl{color:var(--kc);font-weight:800;font-size:20px}
+details.sec>summary::after{align-self:center}
+details.sec>.secbody{padding:10px 0 0}
+@media (max-width:860px){.banner h1{font-size:24px}.banner{padding:18px}}
+.kw{display:grid;gap:6px;margin:10px 0}
+.kwr{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--kc);border-radius:4px;padding:8px 10px}
+.kwl{font-family:var(--f-mono);font-weight:500;color:var(--kc);font-size:14px;line-height:1.3}
+.kwl small{display:block;font-family:var(--f-body);color:var(--muted);font-size:12px;font-weight:400}
+.kwr code{font-family:var(--f-mono);font-size:13px;line-height:1.6;white-space:normal;overflow-wrap:anywhere;word-break:keep-all}
+.kwsum{font-size:14.5px;padding:6px 10px;color:var(--fg)}
+.kwsum b{color:var(--kc)}
+.kwfinal{font-family:var(--f-mono);font-size:13.5px;background:var(--surface);border:2px solid var(--fg);border-radius:4px;padding:10px 12px;margin:10px 0;overflow-wrap:anywhere}
+.redbig{color:var(--k-ex);font-size:1.15em}
+details.sec>summary h2 .ttl{color:var(--fg)}
+details.expl>summary{font-size:17px;font-weight:700}
+.cd{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:4px 0 12px}
+.cdbar{background:#1D2A33;color:#fff;font-weight:700;padding:10px 16px;font-size:14.5px}
+.cdin{padding:18px 18px 20px;background:var(--surface)}
+.cdtop{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center}
+.cbx{border:2px solid var(--kc);background:color-mix(in srgb,var(--kc) 12%,var(--surface));border-radius:10px;padding:10px;text-align:center}
+.cbx b{display:block;color:var(--kc);font-size:16px}
+.cbx small{color:var(--muted);font-size:12.5px}
+.cdx{font-size:22px;font-weight:800}
+.cdstem{width:3px;height:16px;background:var(--fg);margin:0 auto}
+.cdpill{width:max-content;max-width:100%;margin:0 auto;border:2px solid var(--fg);background:var(--surface);border-radius:999px;padding:5px 16px;font-weight:700;font-size:14.5px}
+.cdfork{display:grid;grid-template-columns:1fr 1fr;margin:0 25%}
+.cdfork .fl{border-top:4px solid var(--k-ex);border-left:4px solid var(--k-ex);height:18px}
+.cdfork .fr{border-top:4px solid var(--k-t2);border-right:4px solid var(--k-t2);height:18px}
+.cdlegs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.leg{border:2px solid var(--kc);background:color-mix(in srgb,var(--kc) 9%,var(--surface));border-radius:10px;padding:12px;text-align:center}
+.lx{--kc:var(--k-ex)} .lt{--kc:var(--k-t2)}
+.leg .lh{color:var(--kc);font-weight:800;font-size:16px}
+.leg .ls{color:var(--fg);font-size:13.5px;margin:2px 0 8px}
+.leg .chips{justify-content:center;gap:4px}
+.leg .more{color:var(--muted)}
+.dd{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.ddc{border:1.5px solid var(--kc);color:var(--kc);background:var(--surface);border-radius:6px;padding:2px 10px;font-size:13px;font-weight:700}
+.gobtn{margin-top:10px;border:2px solid var(--k-t2);background:var(--surface);color:var(--k-t2);border-radius:8px;padding:6px 10px;font-weight:700;font-size:14px}
+details.legend4{margin:0 0 12px}
+.lg4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:0 14px 14px}
+.lgc{border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg)}
+.lgh{color:var(--kc);font-weight:800;margin-bottom:6px}
+.lgsub{font-size:12.5px;font-weight:700;margin:6px 0 2px}
+.lgc .chips{gap:4px}
+@media (max-width:600px){.cdfork{display:none}.cdlegs,.lg4{grid-template-columns:minmax(0,1fr)}.cdlegs{margin-top:10px}.cdtop{grid-template-columns:minmax(0,1fr)}.cdx{text-align:center}}
+.cdgroup{position:relative;border:3px solid var(--fg);border-radius:60px;padding:16px 22px 28px;margin:0 0 22px;background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.cdgroup .cdpill{position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);white-space:nowrap}
+.cdgroup+.cdstem{height:18px}
+@media (max-width:600px){.cdtop{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important}.cdx{text-align:center}.cdgroup{padding:12px 12px 26px;border-radius:36px}.cbx small{font-size:11.5px}}
+h2.part{display:flex;align-items:center;gap:12px;font-size:26px;margin:34px 0 14px;padding-bottom:10px;border-bottom:3px solid var(--fg)}
+h2.part .pn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--fg);color:var(--surface);font-size:22px}
+.pending{border:1.5px dashed var(--line);border-radius:14px;padding:18px;color:var(--muted);background:var(--surface)}
+.rulebox{border:1.5px solid var(--fg);border-radius:12px;padding:10px 14px;margin:12px 0;background:var(--surface);font-size:14.5px}
+.rulebox>b:first-child{display:inline-block;background:var(--fg);color:var(--surface);border-radius:6px;padding:0 8px;margin-right:6px;font-size:13px}
+.rulebox ul{margin:6px 0 0;padding-left:18px}
+details.mini{margin:8px 0 12px}
+details.mini>summary{font-size:13px;color:var(--muted);padding:8px 14px}
+.fnbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0}
+.fnh{font-weight:800;margin-bottom:8px}.fnh span{font-weight:500;font-size:12.5px;color:var(--in);margin-left:8px}
+.fnr{display:grid;grid-template-columns:96px minmax(0,1fr) 72px;gap:4px 10px;align-items:center;padding:4px 0}
+.fnl{font-size:13.5px;font-weight:700}
+.fnb{background:var(--bg);border-radius:6px;height:14px;overflow:hidden}.fnb span{display:block;height:100%;border-radius:6px;opacity:.85}
+.fnn{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+.fnt{grid-column:2 / -1;font-size:12px;color:var(--muted);margin-top:-2px}
+</style>
+
+<div class="wrap">
+<nav aria-label="목차">
+  <div class="lbl">규칙집 v2.1</div>
+  <ol>
+    <li><a href="#part1"><b>1. 검색 범위</b></a></li>
+    <li><a href="#core">　개념도</a></li>
+    <li><a href="#p1">1. 기판</a></li>
+    <li><a href="#p2">2. 관통</a></li>
+    <li><a href="#p3">3. 제외 규칙</a></li>
+    <li><a href="#p4">4. 태그 분류</a></li>
+    <li><a href="#s0">그림으로 보는 예시</a></li>
+    <li><a href="#part2"><b>2. 분석 결과</b></a></li>
+    <li><a href="#s8">부록</a></li>
+  </ol>
+</nav>
+
+<main>
+<section class="banner"><div><p class="eyebrow">THROUGH-SUBSTRATE · 특허 추출 규칙 v2.1</p><h1>기판 관통 연결 기술 특허 추출 규칙</h1><p class="bsub">기판 × 관통으로 넓게 잡고, 제외 규칙으로 빼고, 태그로 원하는 타겟만 골라 봅니다. 2026-11-19 합의 기준.</p></div><span class="bpill">Apple US · SDC·LGD KR</span></section>
+
+
+
+<h2 class="part" id="part1"><span class="pn">1</span>검색 범위</h2>
+<div class="cd" id="core" aria-label="개념도: 기판 관통 특허 검색">
+  <div class="cdbar">기판 관통 특허 검색</div>
+  <div class="cdin">
+    <div class="cdgroup"><div class="cdtop"><div class="cbx" style="--kc:var(--k-mat)"><b>1 기판</b><small>플라스틱 · 유리 · 기판</small></div><div class="cdx">×</div><div class="cbx" style="--kc:var(--k-str)"><b>2 관통한다는 개념</b><small>관통 · 유사 단어 · 관통 개념</small></div></div><div class="cdpill">후보를 넓게 수집</div></div>
+    <div class="cdstem"></div>
+    <div class="cdfork" aria-hidden="true"><div class="fl"></div><div class="fr"></div></div>
+    <div class="cdlegs">
+      <div class="leg lx"><div class="lh">× 3 제외 규칙</div><div class="ls">해당 특허는 빼고, 사유 태그만 기록</div><div class="chips"><span class="chip" style="--kc:var(--k-ex)">LCD</span><span class="chip" style="--kc:var(--k-ex)">PCB 기판</span><span class="chip" style="--kc:var(--k-ex)">기판 없음</span><span class="chip" style="--kc:var(--k-ex)">카메라홀</span><span class="chip" style="--kc:var(--k-ex)">우회형</span><span class="more">…</span></div></div>
+      <div class="leg lt"><div class="lh">4 남은 특허에 태그</div><div class="ls">원하는 타겟만 골라 보기</div><div class="dd"><span class="ddc" style="--kc:var(--k-t1)">분야 ▾</span><span class="ddc" style="--kc:var(--k-t2)">제품 ▾</span><span class="ddc" style="--kc:var(--k-t3)">목적 ▾</span><span class="ddc" style="--kc:var(--k-t4)">구조 ▾</span></div><div class="gobtn">☰ 고른 태그의 특허만 보기</div></div>
+    </div>
+  </div>
+</div>
+<details class="legend4">
+<summary>공통 범례 (펼치기)</summary>
+<div class="lg4">
+  <div class="lgc" style="--kc:var(--k-mat)"><div class="lgh">1 기판</div><div class="chips"><span class="chip" style="--kc:var(--k-mat)">플라스틱</span><span class="chip" style="--kc:var(--k-mat)">유리</span><span class="chip" style="--kc:var(--k-mat)">기판 (청구항에 재질 없이 '기판'만 기재)</span></div></div>
+  <div class="lgc" style="--kc:var(--k-str)"><div class="lgh">2 관통한다는 개념</div><div class="chips"><span class="chip" style="--kc:var(--k-str)">관통</span><span class="chip" style="--kc:var(--k-str)">유사 단어 (오픈부·노출·삽입 등)</span><span class="chip" style="--kc:var(--k-str)">관통 개념 (명세서상 관통 목적)</span></div></div>
+  <div class="lgc" style="--kc:var(--k-ex)"><div class="lgh">3 제외 규칙 · 사유 태그 예시</div><div class="chips"><span class="chip" style="--kc:var(--k-ex)">LCD</span><span class="chip" style="--kc:var(--k-ex)">PCB 기판</span><span class="chip" style="--kc:var(--k-ex)">기판 없음</span><span class="chip" style="--kc:var(--k-ex)">실리콘·웨이퍼 기판</span><span class="chip" style="--kc:var(--k-ex)">TFT층 홀만</span><span class="chip" style="--kc:var(--k-ex)">카메라·센서홀</span><span class="chip" style="--kc:var(--k-ex)">우회형 (측면 배선)</span><span class="chip" style="--kc:var(--k-ex)">슬릿</span><span class="chip" style="--kc:var(--k-ex)">체결·방열 홀</span><span class="chip" style="--kc:var(--k-ex)">절단선</span></div></div>
+  <div class="lgc" style="--kc:var(--k-t2)"><div class="lgh">4 태그 분류 · 원하는 타겟 골라 보기</div>
+    <div class="lgsub" style="color:var(--k-t1)">분야</div><div class="chips"><span class="chip" style="--kc:var(--k-t1)">디스플레이</span><span class="chip" style="--kc:var(--k-t1)">반도체</span><span class="chip" style="--kc:var(--k-t1)">센서·기타</span></div>
+    <div class="lgsub" style="color:var(--k-t2)">제품</div><div class="chips"><span class="chip" style="--kc:var(--k-t2)">PO</span><span class="chip" style="--kc:var(--k-t2)">GA</span><span class="chip" style="--kc:var(--k-t2)">타일드</span><span class="chip" style="--kc:var(--k-t2)">마이크로LED</span><span class="chip" style="--kc:var(--k-t2)">투명</span><span class="chip" style="--kc:var(--k-t2)">글라스 인터포저</span><span class="chip" style="--kc:var(--k-t2)">유리 코어 기판</span><span class="chip" style="--kc:var(--k-t2)">CPO</span></div>
+    <div class="lgsub" style="color:var(--k-t3)">목적</div><div class="chips"><span class="chip" style="--kc:var(--k-t3)">베젤 축소·벤딩부 제거</span><span class="chip" style="--kc:var(--k-t3)">미세피치·고밀도 연결</span><span class="chip" style="--kc:var(--k-t3)">신호 경로 단축</span></div>
+    <div class="lgsub" style="color:var(--k-t4)">구조 <span style="font-weight:400;color:var(--muted)">(어떻게 연결했나 · 값은 바뀔 수 있음)</span></div><div class="chips"><span class="chip" style="--kc:var(--k-t4)">관통 연결만</span><span class="chip" style="--kc:var(--k-t4)">관통 + 부품 실장</span></div></div>
+</div>
+</details>
+<p class="note">※ 모든 판정은 <b>독립항</b> 기준이며, 독립항이 여럿이면 하나씩 따로 보고 합칩니다 <span class="rid">G-1</span>.</p>
+
+<!-- 1 기판 -->
+<details class="sec" style="--kc:var(--k-mat)">
+<summary><h2 id="p1"><span class="badge">1 기판</span><span class="ttl">유리 · 플라스틱 · 기판</span></h2></summary>
+<div class="secbody">
+<div class="prog" data-cur="1"></div>
+<p>관통되는 기판이 <b>유리</b>(UTG·석영·사파이어 포함), <b>플라스틱</b>, 또는 재질 없이 그냥 <b>"기판"</b>이라고만 쓰인 경우가 대상입니다. 그냥 "기판"은 권리범위가 가장 넓은 청구항이라 따로 표시합니다. 청구항에 기판 언급 자체가 없는 경우(예: "패널을 관통")는 <b>미특정</b>으로 표시합니다.</p>
+<p>청구항마다 기판을 부르는 이름이 다릅니다 (베이스층, 플레이트, 코어, 어레이 기판 등). 이름이 아니라 <b>다른 구성을 받치는 지지층인지</b>로 판단합니다.</p>
+<p class="conclude"><b>검색식:</b> 재질별로 블록을 만들어 합칩니다. 재질이 안 적힌 "기판"도 잡아야 하므로 M3가 가장 넓습니다. M1·M2에 걸리면 유리·플라스틱 재질 표시에도 씁니다.</p>
+<div class="kw" style="--kc:var(--k-mat)">
+  <div class="kwr"><div class="kwl">M1<small>유리</small></div><code>(유리* 글라스* 글래스* UTG 석영 사파이어).CLI.</code></div>
+  <div class="kwr"><div class="kwl">M2<small>플라스틱</small></div><code>(플라스틱* 폴리이미드* 폴리머* 고분자* 수지* 플렉서블* 가요성*).CLI.</code></div>
+  <div class="kwr"><div class="kwl">M3<small>기판</small></div><code>(기판* 베이스* 플레이트 코어* "어레이 기판" 지지층*).CLI.</code></div>
+  <div class="kwsum"><b>기판 블록</b> = M1 OR M2 OR M3</div>
+</div>
+<p class="note">Apple 미국 특허는 같은 구조로 영문 키워드(glass, ultra-thin glass, quartz, sapphire / polymer, polyimide, plastic, resin, flexible / substrate, base layer, backplane, wafer)를 씁니다. 실리콘 기판·웨이퍼로 한정된 건은 3 제외 규칙에서 뺍니다.</p>
+
+</div>
+</details>
+
+<!-- 2 관통 -->
+<details class="sec" style="--kc:var(--k-str)">
+<summary><h2 id="p2"><span class="badge">2 관통</span><span class="ttl">단어뿐 아니라 의미로 확대해서 본다</span></h2></summary>
+<div class="secbody">
+<div class="prog" data-cur="2"></div>
+<p>관통이 들어오는 길은 두 가지입니다. 청구항에 관통이 있거나(2-1), 청구항 표현은 달라도 명세서에 관통 목적이 있는 경우(2-2)입니다.</p>
+
+<h3 id="p21">2-1 관통은 의미로 판정한다</h3>
+<div class="decide"><b>결정</b> 관통 = 기판 두께 방향으로 앞뒤를 직접 잇는 구조 <span class="rid">F-1</span>. 한 번에 뚫지 않아도 됩니다. 여러 단계로 뚫거나 쌓은 홀이 결과적으로 기판 두께를 가로지르면 관통입니다.</div>
+<div class="decide"><b>결정</b> 관통은 <b>기판을 관통하는 금속 연결</b>이어야 합니다 <span class="rid">확정</span> (도전체·전극·배선·패드로 앞뒤를 잇는 것). 구멍만 뚫린 것(증착 마스크 개구, 카메라·센서홀)과 <b>기판이 아닌 층</b>(봉지층·재배선층 RDL·반사막 DBR)만 뚫은 비아는 해당하지 않습니다. 검색식에도 독립항에 금속 연결 단어(도전·전극·배선·패드·단자·범프·리드 / conductive·electrical·pad·contact·trace·interconnect)를 필수로 넣었습니다.</div>
+<p>청구항은 관통을 "관통"이라고 쓰지 않는 경우가 많습니다. 단어 하나로 검색하면 넓히면 모수가 수천 건으로 터지고, 좁히면 절반이 빠집니다. 그래서 관통의 의미가 청구항에 나타나는 <b>패턴</b>을 정리했습니다.</p>
+<div class="tbl"><table>
+<thead><tr><th>패턴</th><th>청구항 문언 예</th><th>사례</th></tr></thead>
+<tbody>
+<tr><td>P-a 직접</td><td>관통, 통과, passes through, penetrating</td><td>US 9,504,124 청구항 1</td></tr>
+<tr><td>P-b 노출</td><td>기판의 홀·오픈부를 통해 노출되는 패드</td><td>843</td></tr>
+<tr><td>P-c 삽입·배치</td><td>기판의 홀·오픈부에 연성필름·리드·드라이버 기판이 삽입/배치</td><td>타일형 시리즈, 843, 732</td></tr>
+<tr><td>P-d 양면 배치</td><td>기판 일면 … 타면·하부의 패드와 연결</td><td>US 10,170,711</td></tr>
+<tr><td>P-e 채움·연장</td><td>도전부가 홀을 채움, 배선이 홀 안으로 연장</td><td>785, 175</td></tr>
+<tr><td>P-f 두께방향 중첩</td><td>컨택홀들이 두께 방향으로 중첩</td><td>080, 435</td></tr>
+</tbody></table></div>
+<div class="rulebox"><b>맥락으로 판정하는 경우</b> 청구항에 '기판 관통'이라는 말이 없어도, 구조상 기판을 지나 반대편과 금속으로 이어지면 TGV로 봅니다.
+<ul><li><b>패널 컨택홀 + 아래 금속 기판:</b> 패널의 컨택홀에 도전재를 채워 패널 아래 금속 기판과 패드를 연결 (예: LGD 10-2578350, 10-2020-0062510)</li><li><b>패널 아래 지지 플레이트:</b> 플레이트 홀의 배선이 패널 신호를 회로기판으로 연결 (예: SDC 10-2026-0024506)</li></ul></div>
+<p class="conclude"><b>검색 방식의 결론:</b> 위 6개 패턴 중 하나만 들어 있어도 걸리도록, 패턴마다 빠질 수 없는 단어로 검색 블록을 하나씩 만들고 결과를 모두 합칩니다. 한국 특허(독립항 필드) 검색식 초안은 아래와 같습니다.</p>
+<div class="kw" style="--kc:var(--k-str)">
+  <div class="kwr"><div class="kwl">홀류<small>공통</small></div><code>오픈부 개구* 개구홀 컨택홀 콘택홀 (컨택 ADJ 홀) (콘택 ADJ 홀) 관통홀 (관통 ADJ 홀) 비아홀 (비아 ADJ 홀) 홀</code></div>
+  <div class="kwr"><div class="kwl">B1<small>직접</small></div><code>((기판 베이스* 플레이트 코어 인터포저*) NEAR (관통* 통과*)).CLI. OR ((관통홀 (관통 ADJ 홀) 관통전극 (관통 ADJ 전극) 관통배선 TGV TSV).CLI. AND (기판* 베이스*).CLI. AND (패드* 단자* 연성* 회로* 칩* 리드* 하면 배면 후면 타면 하단 삽입*).CLI.)</code></div>
+  <div class="kwr"><div class="kwl">B2<small>노출</small></div><code>(기판* 베이스*) AND (홀류) AND (노출*) AND (하면 배면 후면 타면) AND (패드* 단자*)</code></div>
+  <div class="kwr"><div class="kwl">B3<small>삽입·배치</small></div><code>(기판* 베이스*) AND ((홀류) NEAR (삽입* 배치*)) AND (하부 하면 배면 후면 타면) AND (패드* 단자* 연성* 회로* 리드*)</code></div>
+  <div class="kwr"><div class="kwl">B4<small>양면</small></div><code>(기판* 베이스*) AND (일면 상면 (제1 ADJ 면) 제1면) AND (타면 하면 배면 후면 (제2 ADJ 면) 제2면) AND (패드* 단자*) AND (홀류)</code></div>
+  <div class="kwr"><div class="kwl">B5<small>채움</small></div><code>((기판*) AND (홀류) AND (채우* 충전* 충진* 매립*) AND (패드* 단자*))</code></div>
+  <div class="kwr"><div class="kwl">B6<small>중첩</small></div><code>((홀류) NEAR 중첩*) AND (두께 ADJ 방향)</code></div>
+  <div class="kwr"><div class="kwl">B7<small>이중 기판</small></div><code>(제1 ADJ 기판) AND (제2 ADJ 기판) AND (홀류) AND (패드* 팬아웃 (팬 ADJ 아웃)) AND (삽입* 노출* 관통*)</code></div>
+  <div class="kwr"><div class="kwl">B8<small>외부 회로</small></div><code>(기판*) AND (홀류) AND (연성필름 (연성 ADJ 필름) (리드 ADJ 전극) (구동 ADJ 기판) (회로 ADJ 기판) 회로기판 드라이버 칩온필름 COF FPCB) AND (삽입* 노출* 본딩* (내부에 ADJ 배치))</code></div>
+  <div class="kwsum"><b>관통 블록</b> = B1 OR B2 OR … OR B8 &nbsp;(모든 항목은 독립항 .CLI. 필드)</div>
+</div>
+<div class="kwfinal"><b>최종 모수(KR)</b> = <span style="color:var(--k-mat)">기판 블록</span> AND <span style="color:var(--k-str)">관통 블록</span> AND (삼성디스플레이 엘지디스플레이).AP. AND KR.CC.</div>
+<h3>Apple 미국 특허 검색식</h3>
+<div class="kw" style="--kc:var(--k-str)">
+  <div class="kwr"><div class="kwl">U1<small>관통+후면</small></div><code>(substrate* glass polymer* wafer* interposer* …) AND (through-hole* TGV TSV via* microvia* (pass* ADJ through) penetrat* … OR (opening* AND (exposed inserted …))) AND ((opposite ADJ surface) (second ADJ surface) rear back backside underside …)</code></div>
+  <div class="kwr"><div class="kwl">U2<small>관통 직접</small></div><code>((pass* ADJ through) (extend* ADJ through) penetrat* through-hole* TGV TSV microvia*) AND (substrate* (polymer ADJ layer*) wafer* glass) AND (circuit* pad* contact*)</code></div>
+  <div class="kwr"><div class="kwl">U3<small>개구 충전</small></div><code>(opening* aperture* hole*) AND (fill* (conductive ADJ material) (conductive ADJ structure*)) AND (display*) AND ((printed ADJ circuit*) (integrated ADJ circuit*) (display ADJ driver) …)</code></div>
+  <div class="kwsum"><b>Apple 모수</b> = (apple).AP. AND US.CC. AND (U1 OR U2 OR U3) &nbsp;(독립항 .CLI. 필드)</div>
+</div>
+<div class="rulebox"><b>1차 보고 100% 재현 규칙</b> 사용자가 직접 고른 특허(1차 보고 세트, KR 41건)는 반드시 모두 잡혀야 합니다. 키워드로 안 잡히는 1차 보고가 있으면 그 독립항을 읽어 <b>왜 빠졌는지 역으로 찾고</b>, 그 표현을 검색 블록으로 추가합니다 (B5의 "충진", B7 이중 기판, B8 외부 회로가 이렇게 추가됨). 1차 보고 번호로 AI 유사도 검색도 함께 돌려 비슷한 특허를 후보에 넣습니다. Apple은 Claude가 고른 <b>참고 세트</b>(미검증)라 재현 필수가 아니고, 규칙에 안 맞으면 뺍니다.</div>
+<p class="note">검색식 작성 규칙: 띄어 쓴 한국어 구문은 따옴표가 아니라 <code>(회로 ADJ 기판)</code>처럼 ADJ로 씁니다. 따옴표로 묶으면 윈텔립스 독립항 검색에서 걸리지 않습니다. Apple 미국 특허 검색식은 아래에 따로 적었습니다.</p>
+
+<h3 id="p22">2-2 목적 경로로 추가한다</h3>
+<div class="decide"><b>결론</b> 청구항 표현이 달라 2-1에 안 걸려도, <span class="redbig">명세서</span>에 <b>기판을 관통해 앞뒤를 잇는 목적</b>이 있으면 검토 대상에 추가합니다.</div>
+<p class="note">2-2는 청구항이 아니라 <b>명세서</b>(기술분야·해결 과제·효과)를 보고 판단합니다.</p>
+<p>목적만 같고 관통 개념이 없는 것(측면 배선, 가장자리 감싸기 같은 우회형)은 빠집니다.</p>
+<div class="tbl"><table>
+<thead><tr><th>2-2에서 보는 목적 (= 태그의 목적 값)</th><th>예시</th></tr></thead>
+<tbody>
+<tr><td>베젤 축소·벤딩부 제거</td><td>843, US 10,170,711, 타일드 792 (제품 축 = 타일드)</td></tr>
+<tr><td>미세피치·고밀도 연결 (인터포저·CPO)</td><td>US 12,681,249 (재질 미확인)</td></tr>
+<tr><td>신호 경로 단축</td><td>독립 목적으로 둠</td></tr>
+</tbody></table></div>
+
+</div>
+</details>
+
+<!-- 3 제외 -->
+<details class="sec" style="--kc:var(--k-ex)">
+<summary><h2 id="p3"><span class="badge">3 제외 규칙</span><span class="ttl">불필요한 특허를 제거한다</span></h2></summary>
+<div class="secbody">
+<div class="prog" data-cur="3"></div>
+<div class="flow3" aria-label="제외 흐름">
+  <div class="fn" style="--kc:var(--k-str)"><div class="h">관통 대상</div>1 기판 × 2 관통으로 넓게 모은 전체</div>
+  <div class="fa" aria-hidden="true">→</div>
+  <div class="fn" style="--kc:var(--k-ex)"><div class="h">⊘ 제외 규칙 · 해당 기술은 뺀다</div>
+    <div class="chips"><span class="chip" style="--kc:var(--k-ex)">PCB 기판</span><span class="chip" style="--kc:var(--k-ex)">기판 없음</span><span class="chip" style="--kc:var(--k-ex)">LCD</span><span class="chip" style="--kc:var(--k-ex)">실리콘·웨이퍼 기판</span><span class="chip" style="--kc:var(--k-ex)">TFT층 홀만</span><span class="chip" style="--kc:var(--k-ex)">카메라·센서홀</span><span class="chip" style="--kc:var(--k-ex)">우회형</span><span class="chip" style="--kc:var(--k-ex)">슬릿</span><span class="chip" style="--kc:var(--k-ex)">체결·음향·방열 홀</span><span class="chip" style="--kc:var(--k-ex)">절단선</span></div></div>
+  <div class="fa" aria-hidden="true">→</div>
+  <div class="fn big" style="--kc:var(--k-t2)"><div class="h">태그 붙이고 골라 보기</div>
+    <div class="chips"><span class="chip" style="--kc:var(--k-t1)">분야</span><span class="chip" style="--kc:var(--k-t2)">제품</span><span class="chip" style="--kc:var(--k-t3)">목적</span></div>
+    <p style="margin:8px 0 0">원하는 타겟만 골라 봅니다. 예: 분야=디스플레이 + 목적=벤딩부 제거</p></div>
+</div>
+<p>뺀 특허에는 <b>어떤 근거로 뺐는지</b> 알 수 있게 사유 태그를 남깁니다.</p>
+
+<details>
+<summary>제외 사유 목록 (펼치기)</summary>
+<div>
+<ul class="exgrid" aria-label="제외 사유 목록">
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>PCB 기판</b> FR-4·에폭시 빌드업 기판 <div class="m">넣으면 모든 전자기기의 스루홀이 들어옴</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>기판 없음</b> 기판 없이 배리어·버퍼층만 <div class="m">예: 375. 임시 기판을 떼어도 다른 기판이 남으면 해당 없음 (956 청구항 20)</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>LCD</b> 독립항이 액정을 기재 <div class="m">명세서에만 LCD면 대상</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>실리콘·웨이퍼 기판</b> 독립항이 실리콘 기판·웨이퍼·반도체 기판으로 한정 <div class="m">웨이퍼를 기판으로 쓰는 개념은 모두 제외 (검색식: 웨이퍼·실리콘 기판 / wafer·silicon substrate·semiconductor substrate)</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>TFT층 홀만</b> 홀이 TFT층 안에만 있음 <div class="m">예: 956 청구항 1</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>카메라·센서홀</b> 바깥 빛을 받기 위한 투과홀 <div class="m">광신호를 보내는 광 비아는 대상</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>터치 패널</b> 뚫는 대상이 터치 패널·터치 센서·감지 패널(입력 감지층) 기판 <div class="m">예: SDC 10-2655241, Apple 12,204,717. 패널 아래 <b>지지 플레이트</b>는 금속 배선이 뚫고 패널 신호를 회로기판으로 이으면 TGV (예: 10-2026-0024506 유리 플레이트)</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>우회형</b> 관통 없이 옆면을 돌아 연결 <div class="m">예: 330, 023, 124 청구항 6</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>슬릿</b> 늘리거나 접기 위한 기판 슬릿</div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>체결·음향·방열 홀</b> 체결·정렬·음향·배기·방열용 홀</div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>절단선</b> 절단·분할 가공선</div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>기판 아닌 층 관통</b> 봉지층·재배선층(RDL)·반사막(DBR)·몰드만 뚫은 비아 <div class="m">예: 반도체 패키지 내부 비아, VCSEL</div></div></li>
+  <li><span class="ic" aria-hidden="true">⊘</span><div><b>금속 연결 없는 구멍</b> 증착 마스크 개구 등 <div class="m">제목에 '마스크'가 있으면 무조건 제외</div></div></li>
+</ul>
+</div>
+</details>
+<h3>노이즈 제외 키워드</h3>
+<p>검색 블록에 함께 걸리는 관련 없는 특허(노이즈)를 표본으로 읽고 정한 단어입니다. <b>제목 단어(장비·LCD·소재)</b>는 보자마자 빼고, <b>독립항 단어(화소정의막·터치·게이트 절연 등)</b>는 아래 안전장치를 거칩니다.</p>
+<div class="kw" style="--kc:var(--k-ex)">
+  <div class="kwr"><div class="kwl">화소<small></small></div><code>화소정의막 · 격벽 · 뱅크 · 발광 개구부</code></div>
+  <div class="kwr"><div class="kwl">카메라<small></small></div><code>카메라 · 렌즈 · 촬상</code></div>
+  <div class="kwr"><div class="kwl">기구물<small></small></div><code>브라켓 · 거치대 · 미드 플레이트 · 쿠션 · 지지 부재 · 힌지</code></div>
+  <div class="kwr"><div class="kwl">TFT<small></small></div><code>층간절연 · 게이트 절연 · 반도체층</code></div>
+  <div class="kwr"><div class="kwl">밀봉·터치<small></small></div><code>터치 · 밀봉 · 실링 · 프릿</code></div>
+  <div class="kwr"><div class="kwl">기타<small></small></div><code>액정 · 진동 · 음향 · 스피커 · 컷팅 · 원장 · 충격</code></div>
+  <div class="kwr"><div class="kwl">장비<small>제목</small></div><code>검사 · 마스크 · 증착 · 액적(잉크젯 방울) · 설비 · 챔버 · 플라즈마 · 장비 · 스테이지 · 성형 · 코팅 · 삽입·부착·처리·본딩·정렬 장치 (무조건 제외)</code></div>
+  <div class="kwr"><div class="kwl">소재·부품<small>제목</small></div><code>디지타이저 · 이형 · 접착 · 이방성 도전 필름 · 커버 패널 · 윈도우 · 안테나 · 렌즈 · 센서 (무조건 제외)</code></div>
+  <div class="kwr"><div class="kwl">웨이퍼<small>독립항</small></div><code>웨이퍼 · 실리콘 기판 · 실리콘 웨이퍼 (무조건 제외)</code></div>
+  <div class="kwr"><div class="kwl">LCD<small>제목</small></div><code>액정 · 백라이트 · LCD · 광원 · 도광 · 조명장치 (안전장치 없이 무조건 제외)</code></div>
+  <div class="kwr"><div class="kwl">장비·센서<small>제목</small></div><code>세정 · 이송 · 측정 · 노광 · 연마 · 절단 · 엑스레이 · 검출기 · 지문 · 압력 · 초음파 · 반송 · 가공 · 합착 · 디스펜서 · 클린룸 · 지그 · 적재 · 평탄도 · 열처리 (무조건 제외)</code></div>
+  <div class="kwr"><div class="kwl">설비·기타<small></small></div><code>챔버 · 플라즈마 · 증착원 · 샤프트 · 승강 · 롤러 · 와인딩 · 백커버 · 케이스 · 자성 · 쉴드 · 리페어 · 블랙매트릭스 · 차광 · 컴포넌트 · 광센서 · 시야각 · 잉크 · 측면 배선 · 보호댐</code></div>
+</div>
+<p><b>Apple 미국 특허 노이즈(제목)</b>: acoustic · microphone · speaker · audio · vent · antenna · wireless charging · fabric · textile · wristband · strap · band · keycap · keyboard · key · enclosure · housing · stand · remote · camera · lens · image sensor · haptic · button · watch · hinge · magnet<br>독립항 제외: camera · RDL(redistribution layer) · DBR(Bragg reflector) · mold compound · epitaxial · VCSEL · chiplet (기판 아닌 층 관통)</p>
+<div class="rulebox" style="border-style:dashed"><b>독립항 단어를 쓰는 이유</b> 화소정의막·터치·게이트 절연 같은 단어는 디스플레이 특허 대부분에 나옵니다. 이 단어로 빼는 것은 "단어가 있어서"가 아니라, <b>기판이 아닌 TFT층·화소층의 컨택홀</b>을 관통으로 잘못 잡은 특허를 거르려는 것입니다. 이 단어들을 빼면 한국 모수가 537 → 818건(+281)으로 늘고, 늘어난 쪽 표본 8건은 모두 TFT층 컨택홀이었습니다(8/8 노이즈). "홀이 기판에 있다"는 조건으로 대신 걸러 보면 1차 보고 41건 중 25건이 빠져서 쓰지 못했습니다.</div>
+<div class="rulebox"><b>안전장치</b> 노이즈 단어가 들어 있어도 <b>"기판을 뚫고 반대쪽 면에 금속으로 연결한다"</b>는 신호가 독립항에 분명하면 빼지 않고 남깁니다. 노이즈 단어는 관련 없는 특허를 거르려는 것이지, 관통 연결 특허까지 빼려는 것이 아니기 때문입니다.
+<ul><li><b>회로 부품이 뒷면에 붙음:</b> 연성필름·회로기판·구동칩·리드·인터포저가 기판 하면·배면·후면에 있음</li><li><b>기판을 뚫고 금속 연결:</b> 기판 바로 근처에 관통·오픈부가 있고, 패드·배선·전극이 함께 있음</li><li><b>관통해서 반대면 단자로:</b> 관통 + 하면·배면 + 단자·패드·회로</li></ul>
+<p class="note" style="margin:6px 0 0">예: 독립항에 '터치'(노이즈 단어)가 있어도 "기판 관통홀을 통해 하면 패드에 연성필름이 연결"되면 남깁니다. 제외 키워드를 추가할 때마다 1차 보고 41건이 하나도 빠지지 않는지 확인합니다. 단, 제목에 마스크·액정·백라이트·장비 단어가 있으면 안전장치 없이 무조건 뺍니다.</p></div>
+<p><b>EX 태그만은 <span class="redbig">명세서</span>도 근거로 씁니다.</b> 용도는 보통 청구항에 나오지 않으므로 명세서까지 확인했다는 뜻입니다. 근거가 청구항인지 명세서인지 표시합니다.</p>
+
+</div>
+</details>
+
+<!-- 4 태그 -->
+<details class="sec" style="--kc:var(--k-t2)">
+<summary><h2 id="p4"><span class="badge">4 태그 분류</span><span class="ttl">목적에 맞게 필터해서 본다</span></h2></summary>
+<div class="secbody">
+<div class="prog" data-cur="4"></div>
+
+<p>3번까지 통과한 특허(분석 모수)에 <b>서로 독립된 4개 축</b>으로 태그를 붙이고, 원하는 필터를 걸어 봅니다. 축끼리는 합치지 않습니다. 한 축의 값이 다른 축을 정하지 않고, 한 축에 값이 여러 개 붙을 수 있습니다.</p>
+<div class="tbl"><table><thead><tr><th>축</th><th>질문</th><th>근거</th></tr></thead><tbody>
+<tr><td><b style="color:var(--k-t1)">분야</b></td><td>어떤 산업인가</td><td>명세서</td></tr>
+<tr><td><b style="color:var(--k-t2)">제품</b></td><td>어디에 쓰이나 (타일드·PO·투명…)</td><td>명세서</td></tr>
+<tr><td><b style="color:var(--k-t3)">목적</b></td><td>왜 관통했나 (베젤 축소·벤딩 제거…)</td><td>명세서</td></tr>
+<tr><td><b style="color:var(--k-t4)">구조</b></td><td>어떻게 연결했나 (관통 연결만 / 관통 + 부품 실장) · 관통 위치 (패드·비표시 영역 / 표시 영역 안 / 미기재)</td><td>청구항(독립항)</td></tr>
+</tbody></table></div>
+<p class="note">제품과 목적은 다른 개념이라 따로 둡니다. 예: 타일드(제품)의 목적은 베젤 축소일 수도, 다른 목적일 수도 있습니다. <b>부품 실장</b>은 무엇이 붙는지가 아니라 <b>실장이 있느냐 없느냐</b>로 보는 구조 값입니다. 구조 축의 값은 분석하면서 바뀔 수 있습니다.</p>
+<div class="openlist"><b>태그는 계속 늘어납니다.</b> 태그 값은 정해 둔 목록이 아니라 <b>열린 목록</b>입니다. 실제 특허를 검출하다 새로운 분야·제품·목적이 나오면 예시 특허와 함께 여쭙고, 확인을 받은 뒤 추가합니다.</div>
+<div class="legend2" aria-label="색 설명">
+  <span style="--kc:var(--k-mat)"><i></i>파랑 = 기판</span>
+  <span style="--kc:var(--k-t1)"><i></i>초록 = 분야</span>
+  <span style="--kc:var(--k-t2)"><i></i>보라 = 제품</span>
+  <span style="--kc:var(--k-t3)"><i></i>주황 = 목적</span><span style="--kc:var(--k-t4)"><i></i>청록 = 구조</span>
+  <span style="--kc:var(--k-ex)"><i></i>빨강 = 제외 사유</span>
+</div>
+<div class="presets" id="pre" role="group" aria-label="자주 쓰는 보기"></div>
+<div class="fbox" aria-label="태그 필터">
+  <div class="frow"><span class="fl">분야</span><span id="f1"></span></div>
+  <div class="frow"><span class="fl">제품</span><span id="f2"></span></div>
+  <div class="frow"><span class="fl">목적</span><span id="f3"></span></div>
+  <div class="frow"><span class="fl">구조</span><span id="f4"></span></div>
+  <div class="formula" id="ff"></div>
+  <div class="flist" id="fl"></div>
+  <div class="fcount" id="fc"></div>
+</div>
+<p class="note">시연용 예시 데이터입니다. 태그 값 일부는 설명을 위해 붙인 것이며 실제 판정 결과가 아닙니다. 제외 사유가 있는 특허는 항상 빠집니다(줄 그어짐). 태그 값은 정해진 목록이 아니라, 검출하면서 새 분야·제품·목적이 나오면 확인을 거쳐 추가합니다.</p>
+
+<h3>왜 태그를 같은 높이로 여러 개 붙이나</h3>
+<p>제품과 목적은 따로 움직입니다. 843(패드부)과 792(타일드)는 둘 다 목적이 <span class="chip" style="--kc:var(--k-t3)">베젤 축소·벤딩부 제거</span>이고, 792에만 제품 <span class="chip" style="--kc:var(--k-t2)">타일드</span>가 붙습니다. "타일 이음매 축소"처럼 제품 이름이 들어간 목적은 만들지 않습니다. 그래야 "베젤 축소 전체" 또는 "타일드만"처럼 축별로 골라 볼 수 있습니다.</p>
+
+</div>
+</details>
+
+<!-- 개념도 -->
+<details class="expl" id="s0">
+<summary>그림으로 보는 예시</summary>
+<div>
+
+<p>왼쪽에서 구조를 고르면 단면 개념도와 판정이 나옵니다. <b>2 관통</b>과 <b>3 제외</b>가 실제 특허에서 어떻게 갈리는지 보여줍니다.</p>
+<div class="explorer">
+  <div class="cases" id="cases" role="group" aria-label="구조 선택"></div>
+  <div class="view" id="view" aria-live="polite"></div>
+</div>
+<p class="note">그림은 청구항·요약 문언을 바탕으로 다시 그린 <b>개념도</b>이며 원 도면이 아닙니다. 층 두께·비율은 실제와 다릅니다.</p>
+
+</div>
+</details>
+
+<h2 class="part" id="part2"><span class="pn">2</span>분석 결과</h2>
+<div id="results">
+<h3>2-1 단계별 건수</h3>
+<p class="note">독립항 검색 기준 · 공개·등록 문헌을 모두 셈 · 막대는 로그 척도 · 2026-11-19</p>
+<div class="fnbox"><div class="fnh">SDC <span>1차 보고 34/34 포함</span></div>
+<div class="fnr"><div class="fnl">출원인 전체</div><div class="fnb"><span style="width:100%;background:var(--k-mat)"></span></div><div class="fnn">62,593</div><div class="fnt">삼성디스플레이 한국 특허 전부</div></div>
+<div class="fnr"><div class="fnl">1 기판</div><div class="fnb"><span style="width:95%;background:var(--k-mat)"></span></div><div class="fnn">35,731</div><div class="fnt">독립항에 기판(유리·플라스틱·기판) 기재</div></div>
+<div class="fnr"><div class="fnl">1 × 2 관통</div><div class="fnb"><span style="width:58%;background:var(--k-mat)"></span></div><div class="fnn">620</div><div class="fnt">관통 블록 B1~B8 + 금속 연결</div></div>
+<div class="fnr"><div class="fnl">3 제외 · 검색식</div><div class="fnb"><span style="width:54%;background:var(--k-mat)"></span></div><div class="fnn">379</div><div class="fnt">노이즈 단어·제외 사유를 검색식으로 적용</div></div>
+<div class="fnr"><div class="fnl"><b>3 제외 · 판독</b></div><div class="fnb"><span style="width:45%;background:var(--k-t4)"></span></div><div class="fnn"><b>102</b><span class="dc" style="font-size:11px;color:var(--muted)"> (150)</span></div><div class="fnt">독립항을 한 건씩 읽어 같은 규칙으로 더 벌 (TGV 144 + 경계 6) = <b>최종 모수</b> · 패밀리(문헌)</div></div>
+</div>
+<div class="fnbox"><div class="fnh">LGD <span>1차 보고 7/7 포함</span></div>
+<div class="fnr"><div class="fnl">출원인 전체</div><div class="fnb"><span style="width:100%;background:var(--k-mat)"></span></div><div class="fnn">77,680</div><div class="fnt">엘지디스플레이 한국 특허 전부</div></div>
+<div class="fnr"><div class="fnl">1 기판</div><div class="fnb"><span style="width:95%;background:var(--k-mat)"></span></div><div class="fnn">43,287</div><div class="fnt">독립항에 기판(유리·플라스틱·기판) 기재</div></div>
+<div class="fnr"><div class="fnl">1 × 2 관통</div><div class="fnb"><span style="width:52%;background:var(--k-mat)"></span></div><div class="fnn">355</div><div class="fnt">관통 블록 B1~B8 + 금속 연결</div></div>
+<div class="fnr"><div class="fnl">3 제외 · 검색식</div><div class="fnb"><span style="width:44%;background:var(--k-mat)"></span></div><div class="fnn">138</div><div class="fnt">노이즈 단어·제외 사유를 검색식으로 적용</div></div>
+<div class="fnr"><div class="fnl"><b>3 제외 · 판독</b></div><div class="fnb"><span style="width:29%;background:var(--k-t4)"></span></div><div class="fnn"><b>19</b><span class="dc" style="font-size:11px;color:var(--muted)"> (26)</span></div><div class="fnt">독립항을 한 건씩 읽어 같은 규칙으로 더 벌 (TGV 25 + 경계 1) = <b>최종 모수</b> · 패밀리(문헌)</div></div>
+</div>
+<div class="fnbox"><div class="fnh">Apple <span>참고 세트 14건 (Claude 선정·미검증 · 사용자 검토 예정)</span></div>
+<div class="fnr"><div class="fnl">출원인 전체</div><div class="fnb"><span style="width:100%;background:var(--k-mat)"></span></div><div class="fnn">84,159</div><div class="fnt">Apple 미국 특허 전부</div></div>
+<div class="fnr"><div class="fnl">1 기판</div><div class="fnb"><span style="width:77%;background:var(--k-mat)"></span></div><div class="fnn">6,301</div><div class="fnt">독립항에 substrate·glass·polymer 등</div></div>
+<div class="fnr"><div class="fnl">1 × 2 관통</div><div class="fnb"><span style="width:55%;background:var(--k-mat)"></span></div><div class="fnn">536</div><div class="fnt">관통 블록 U1~U3 + 금속 연결</div></div>
+<div class="fnr"><div class="fnl">3 제외 · 검색식</div><div class="fnb"><span style="width:52%;background:var(--k-mat)"></span></div><div class="fnn">332</div><div class="fnt">노이즈 단어·기판 아닌 층 관통을 검색식으로 제외</div></div>
+<div class="fnr"><div class="fnl"><b>3 제외 · 판독</b></div><div class="fnb"><span style="width:32%;background:var(--k-t4)"></span></div><div class="fnn"><b>11</b><span class="dc" style="font-size:11px;color:var(--muted)"> (38)</span></div><div class="fnt">독립항을 한 건씩 읽어 같은 규칙으로 더 벌 (TGV 35 + 경계 3) = <b>최종 모수</b> · 패밀리(문헌)</div></div>
+</div>
+<p class="note">분석 모수 합계 <b>849건</b> (SDC 379 · LGD 138 · Apple 332) = 위 그래프에서 1 기판 → 2 관통 → 3 제외(검색식)까지 거친 수. 이 849건을 한 건씩 판독해 남은 <b>최종 모수는 132개 패밀리</b>(문헌 214건) — SDC 102(150) · LGD 19(26) · Apple 11(38)입니다.</p>
+<h3>2-2 판정 결과 (태그)</h3>
+<div class="tgvdef">
+<div class="tgvh"><span class="chip tgv">TGV</span> 이 분석에서 TGV를 이렇게 판별했습니다</div>
+<p><b>원래 뜻</b> TGV(Through Glass Via)는 유리 기판을 두께 방향으로 뚫고 그 구멍을 금속으로 채워 앞면과 뒷면을 전기적으로 잇는 구조입니다. 주로 반도체 패키징(유리 인터포저·유리 코어 기판)에서 쓰는 말이고, <b>디스플레이 특허에는 이 단어가 거의 나오지 않습니다</b>. 대신 컨택홀·관통홀·비아홀·오픈부·개구부라고 씁니다.</p>
+<p><b>판별 기준</b> 독립항에 <b>표시 기판(유리·플라스틱·폴리이미드)을 두께 방향으로 지나 반대면과 금속(전극·배선·패드·도전체)으로 잇는 구조</b>가 있으면 TGV로 봅니다. 기판이 유리가 아니어도, '관통'이라는 말이 없어도 구조가 같으면 TGV입니다. 목적이 아니라 <b>독립항에 적힌 구조</b>로 판별합니다.</p>
+<ul><li>기판 관통홀의 도전체 → 기판 뒷면의 COF·구동칩·회로기판 (예: LGD 10-2018-0057773)</li><li>기판 한쪽 면의 구동 소자 ↔ 반대쪽 면의 발광 소자를 관통홀로 연결 (예: LGD 10-2018-0045942)</li><li>패널 아래 유리 플레이트·금속 기판까지 금속으로 이어짐 (예: SDC 10-2026-0024506, LGD 10-2578350)</li></ul>
+</div>
+<p class="note">TGV로 판별한 특허에 태그를 더 붙였습니다. 기판 뒷면에 부품이 붙으면 <span class="chip" style="--kc:var(--k-t4)">부품 실장</span>, 청구항에 타일 언급이 있으면 <span class="chip" style="--kc:var(--k-t2)">타일드</span>. 한 특허에 둘 다 붙을 수 있어 조합별로 한 줄씩 셉니다. 숫자는 <b>WIPS 패밀리 수</b>, 괄호는 문헌 수(공개·등록·분할·계속출원을 따로 센 수). 패밀리 안에 TGV 문헌이 하나라도 있으면 TGV 패밀리로, 태그는 패밀리 안 TGV 문헌의 태그를 합쳐 셉니다. 근거 = 독립항 · 2026-11-19</p>
+<div class="tbl rt"><table>
+<thead><tr><th>태그 조합</th><th>SDC</th><th>LGD</th><th>Apple</th></tr></thead>
+<tbody>
+<tr><td><span class="chip tgv">TGV</span> <span class="m">만</span></td><td><b>27</b> <span class="dc">(37)</span></td><td><b>6</b> <span class="dc">(9)</span></td><td><b>3</b> <span class="dc">(14)</span></td></tr>
+<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>37</b> <span class="dc">(47)</span></td><td><b>9</b> <span class="dc">(13)</span></td><td><b>6</b> <span class="dc">(20)</span></td></tr>
+<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>15</b> <span class="dc">(28)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>0</b> <span class="dc">(0)</span></td></tr>
+<tr><td><span class="chip tgv">TGV</span> + <span class="chip" style="--kc:var(--k-t4)">부품 실장</span> + <span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td><b>19</b> <span class="dc">(32)</span></td><td><b>0</b> <span class="dc">(0)</span></td><td><b>1</b> <span class="dc">(1)</span></td></tr>
+<tr class="sum"><td>= TGV 합계</td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(35)</span></td></tr>
+<tr><td><span class="chip" style="--kc:var(--muted)">경계</span> <span class="m">사용자 직접 검토</span></td><td><b>4</b> <span class="dc">(6)</span></td><td><b>4</b> <span class="dc">(4)</span></td><td><b>1</b> <span class="dc">(3)</span></td></tr>
+<tr class="tot"><td>= 최종 모수</td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(38)</span></td></tr>
+<tr class="fr"><td><span class="chip" style="--kc:var(--k-str)">1차 보고</span> <span class="m">모두 TGV로 남음 · 문헌(패밀리)</span></td><td><b>34/34</b> <span class="dc">(34)</span></td><td><b>7/7</b> <span class="dc">(6)</span></td><td><span class="m">참고 세트</span></td></tr>
+</tbody></table></div>
+<div class="tbl"><table>
+<thead><tr><th>태그</th><th>붙는 조건</th></tr></thead>
+<tbody>
+<tr><td><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td>구동칩·연성필름·회로기판이 기판 반대면에 붙음</td></tr>
+<tr><td><span class="chip" style="--kc:var(--k-t2)">타일드</span></td><td>타일 한정 독립항도 있음. 타일 한정 없는 TGV 독립항이 따로 있어 남김</td></tr>
+<tr><td><span class="chip" style="--kc:var(--muted)">경계</span></td><td>뚫는 대상이 표시 기판이 아니거나(프레임·봉지 기판·금속 베이스), 대표항만으로 관통이 확인 안 됨</td></tr>
+</tbody></table></div>
+<p class="note" style="font-size:12.5px">예시 — LGD 10-2016-0038959 (사용자가 고른 타일드 예시): 도면에는 여러 장을 잇는 타일이 나오지만 청구항에는 타일 한정이 없어 <b>TGV</b>만 붙고 타일드 태그는 붙지 않습니다. 태그는 도면이 아니라 독립항으로 붙입니다.</p>
+<details><summary>판독으로 더 뺍 특허 (펼치기)</summary><div>
+<p class="note">검색식은 단어로만 거르므로, 모수 안에 규칙에 해당하는 특허가 남습니다. 독립항을 읽고 같은 3번 규칙으로 더 뺍 수입니다.</p>
+<p class="note"><b>SDC 230</b> — 노이즈 157 (관통 연결 없음) · 카메라홀 41 · 우회형 11 · 슬릿 8 · 실리콘 기판 6 · 터치 패널 3 · LCD 3 · PCB 기판 1<br><b>LGD 112</b> — 노이즈 59 (제목·대표항) · 카메라홀 19 · PCB 기판 15 · 터치 패널 8 · 슬릿 7 · 우회형 3 · 기판 없음 1<br><b>Apple 294</b> — 노이즈 227 (제목·대표항, 사용자 판단 4 포함) · PCB 기판 27 · LCD 16 · 카메라홀 15 · 실리콘 기판 6 · 우회형 2 · 터치 패널 1</p>
+<p class="note">SDC는 타일드 우선 판독분을 더해 380건을 판독했습니다 (380 − 230 = 150).</p>
+</div></details>
+</div>
+
+<!-- 부록 -->
+<h2 id="s8"><span class="no">부록</span>판정 기록 방식</h2>
+<details>
+<summary>판정마다 <b>근거 청구항과 원문 인용</b>을 남깁니다 (펼치기)</summary>
+<div>
+<p>칸마다 값 · 근거 위치 · 원문 인용 · 적용 규칙 · 확신도(확정/해석/질문)를 남깁니다. 판단이 애매하면 "질문"으로 보류하고 예시 특허번호와 함께 여쭙니다. 특허번호는 끝 3자리로 줄여 부릅니다.</p>
+<div class="tbl"><table>
+<thead><tr><th>값</th><th>근거</th><th>원문 인용</th><th>규칙</th><th>확신도</th></tr></thead>
+<tbody>
+<tr><td><span class="pill p-ex">EX-TFT</span></td><td>956 청구항 1</td><td>"박막 트랜지스터층에 마련된 컨택홀에 삽입"</td><td>F-3</td><td>확정</td></tr>
+<tr><td>타일드</td><td>956 청구항 5</td><td>"…를 포함하는 타일형 표시 장치"</td><td>제품</td><td>확정</td></tr>
+<tr><td><span class="pill p-in">IN</span></td><td>956 청구항 20</td><td>"제2 기판의 타측에 제2 관통홀을 형성 … 제2 관통홀에 삽입"</td><td>F-1, G-8</td><td>확정</td></tr>
+</tbody></table></div>
+<p class="note">청구항 1만 봤다면 빠졌을 특허입니다. 독립항을 하나씩 보는 이유입니다.</p>
+</div>
+</details>
+
+<footer>규칙 원문: <code>workspaces/claude/projects/through-substrate-v2/rules.md</code> · 규칙집 v0.6 (2026-11-19)<br>특허번호 약칭: 843 = KR 10-2025-0068843 · 956 = KR 10-2932956 · 792 = KR 10-3038792 · 330 = KR 10-3033330 · 023 = KR 10-3003023 · 375 = KR 10-2470375 · 124 = US 9,504,124 · 711 = US 10,170,711 · 249 = US 12,681,249 · 175 = KR 10-3006175 · 785 = KR 10-2963785 · 732 = KR 10-2025-0167732 · 504 = KR 10-2706504 · 080 = KR 10-2838080 · 435 = KR 10-2938435</footer>
+</main>
+</div>
+<script>
+(function(){
+  const R=(x,y,w,h,c)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" class="${c}"/>`;
+  const T=(x,y,s,a='start',c='lbl')=>`<text x="${x}" y="${y}" text-anchor="${a}" class="${c}">${s}</text>`;
+  const Pth=(d,c)=>`<path d="${d}" class="${c}"/>`;
+  const L=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="lead"/>`;
+  const svg=(inner,h=230)=>`<svg viewBox="0 0 560 ${h}" role="img" aria-label="단면 개념도">${inner}</svg>`;
+
+  const C={
+  via124:{grp:'in',name:'기판 관통 비아',sub:'124 청구항 1',
+    v:'IN',vc:'p-in',rule:'F-1 · 패턴 P-a',pat:'US 9,504,124 · 청구항 1',
+    q:'"at least one microvia that passes through the first polymer layer and the second polymer layer … located in a portion … uncovered by the encapsulation layer"',
+    why:'기판(폴리머층 2장)을 두께 방향으로 뚫은 마이크로비아가 앞면 배선과 뒷면 회로를 잇습니다. 가장 전형적인 관통입니다.',
+    d:()=>svg(
+      R(30,60,320,28,'tft')+T(40,79,'OLED · 봉지층')+
+      R(30,88,500,26,'sub')+R(30,114,500,26,'sub2')+
+      R(250,82,190,5,'metal')+R(420,82,18,58,'metal')+
+      R(380,150,150,16,'film')+R(410,140,38,10,'metal')+
+      T(540,104,'폴리머층 1 (기판)','end','lbls')+T(540,132,'폴리머층 2','end','lbls')+
+      L(429,40,429,80)+T(429,34,'마이크로비아','middle')+
+      T(455,186,'추가 회로','middle','lbls')+T(400,74,'봉지 없는 영역','middle','lbls'))},
+  pad711:{grp:'in',name:'기판 아래 패드 + 비아',sub:'711 청구항 6',
+    v:'IN',vc:'p-in',rule:'F-1 · 패턴 P-d·P-e',pat:'US 10,170,711 · 청구항 6',
+    q:'"the first substrate includes via openings and … metal traces having portions in the via openings that form vias through the first substrate; … conductive pads on a second portion of the second surface … a flexible printed circuit board coupled to the conductive pads"',
+    why:'폴리머 기판의 비아 안으로 배선이 내려가 기판 뒷면 패드에 닿고, 그 패드에 FPCB를 붙입니다.',
+    d:()=>svg(
+      R(30,40,500,22,'tft')+T(40,56,'OLED · 봉지층')+
+      R(30,62,500,26,'tft')+T(40,80,'TFT층')+
+      R(30,88,500,38,'sub')+T(40,111,'폴리머 기판 (제1 기판)')+
+      R(360,84,120,5,'metal')+R(400,88,18,38,'metal')+
+      R(380,126,60,9,'metal')+R(30,126,270,26,'sub2')+T(40,144,'제2 기판','start','lbls')+
+      R(330,140,200,16,'film')+T(430,176,'FPCB (도전 본딩재로 결합)','middle','lbls')+
+      L(409,20,409,84)+T(409,16,'기판 관통 비아','middle')+T(470,136,'뒷면 패드','start','lbls'))},
+  open843:{grp:'in',name:'개구로 패드 노출 + 삽입',sub:'843 청구항 1',
+    v:'IN',vc:'p-in',rule:'F-2 · 패턴 P-b·P-c',pat:'KR 10-2025-0068843 · 청구항 1',
+    q:'"오픈부를 포함하는 제1 기판; … 상기 오픈부를 통해 노출되는 패드부; … 상기 제1 기판의 오픈부에 삽입되고 … 리드 라인을 포함하는 드라이버 기판; 및 상기 패드부 및 상기 리드 라인을 전기적으로 연결하는 컨택부"',
+    why:'"관통"이라는 단어는 없지만, 기판의 오픈부가 패드를 뒤쪽으로 드러내고 드라이버 기판이 그 안으로 들어와 연결됩니다. 의미상 관통입니다.',
+    d:()=>svg(
+      R(30,36,500,24,'tft')+T(40,53,'화소 회로층')+
+      R(30,60,500,30,'sub2')+T(40,80,'제2 기판')+R(300,60,16,30,'metal')+R(200,56,116,5,'metal')+
+      R(220,90,140,8,'metal')+
+      R(30,98,220,36,'sub')+R(330,98,200,36,'sub')+T(40,121,'제1 기판')+
+      Pth('M256 176 L324 176 L316 102 L264 102 Z','film')+Pth('M256 176 L264 102 L316 102 L324 176','wire')+
+      R(262,97,56,5,'ins')+
+      L(308,20,308,58)+T(308,16,'컨택홀 (제2 기판)','middle')+
+      L(370,94,420,94)+T(424,98,'패드부','start','lbls')+
+      L(290,140,400,160)+T(404,164,'드라이버 기판 (오픈부에 삽입)','start','lbls')+
+      T(290,206,'오픈부','middle','lbls'))},
+  hole792:{grp:'in',name:'기판 컨택홀 + 필름 삽입',sub:'792 (타일형 시리즈)',
+    v:'IN',vc:'p-in',rule:'F-1 · 패턴 P-c',pat:'KR 10-3038792 · 요약 기준',
+    q:'"제1 컨택홀을 포함하는 제1 기판 … 팬 아웃 라인 … 상기 제1 기판의 하부에 배치되고, 상기 제1 컨택홀에 삽입되어 상기 팬 아웃 라인의 돌출부에 전기적으로 연결되는 연성 필름"',
+    why:'SDC는 기판을 뚫은 홀을 "컨택홀"이라고 부릅니다. 기판 아래의 연성 필름 리드가 그 홀로 들어와 앞쪽 배선에 닿습니다.',
+    d:()=>svg(
+      R(30,36,500,24,'tft')+T(40,53,'표시층')+
+      R(30,60,500,26,'sub2')+T(40,78,'제2 기판')+
+      R(30,86,500,10,'ins')+R(150,82,220,5,'metal')+R(262,86,18,14,'metal')+
+      R(30,96,220,36,'sub')+R(292,96,238,36,'sub')+T(40,119,'제1 기판')+
+      R(256,100,30,60,'metal')+R(190,160,160,16,'film')+
+      L(271,20,271,80)+T(271,16,'팬 아웃 라인 돌출부','middle')+
+      L(290,130,380,124)+T(384,128,'제1 컨택홀','start','lbls')+
+      T(270,196,'연성 필름 (리드가 홀에 삽입)','middle','lbls'))},
+  fill785:{grp:'in',name:'도전부가 관통홀을 채움',sub:'785',
+    v:'IN',vc:'p-in',rule:'F-1 · 패턴 P-e',pat:'KR 10-2963785 · 요약 기준',
+    q:'"a base substrate … having a through hole …; a flexible printed circuit board including a conductive part filling the through hole"',
+    why:'"삽입"이 아니라 "채움"으로 썼을 뿐, FPCB의 도전부가 기판 관통홀을 채워 앞뒤를 잇습니다. 키워드 시험에서 빠졌던 유형입니다.',
+    d:()=>svg(
+      R(30,50,500,40,'tft')+T(40,74,'표시 패널')+
+      R(30,90,220,36,'sub')+R(290,90,240,36,'sub')+T(40,113,'베이스 기판')+
+      R(250,90,40,36,'metal')+R(170,126,200,18,'film')+
+      L(270,30,270,88)+T(270,24,'관통홀을 채운 도전부','middle')+
+      T(270,166,'FPCB','middle','lbls'))},
+  notch124:{grp:'in',name:'가장자리 노치',sub:'124 청구항 11',
+    v:'IN',vc:'p-in',rule:'F-2 (노치도 관통으로 인정)',pat:'US 9,504,124 · 청구항 11',
+    q:'"a plurality of notches in the first and second polymer layers, wherein each of the notches is adjacent to a corresponding one of the conductive contact pads; … conductive material … formed within each of the plurality of notches"',
+    why:'기판 가장자리를 두께 방향으로 파낸 노치 안의 도전재가 위쪽 패드와 아래 인쇄회로 패드를 잇습니다. 물리적으로는 열린 홈이지만, 두께 방향으로 직접 잇는다는 점에서 관통과 같습니다.',
+    d:()=>svg(
+      T(30,22,'측면 단면 (노치를 지나는 선으로 자른 모습)','start','lbls')+
+      R(30,50,330,26,'tft')+T(40,68,'유기 발광층')+
+      R(30,76,370,26,'sub')+R(30,102,370,26,'sub2')+T(40,94,'폴리머층 1 (기판)','start','lbls')+T(40,120,'폴리머층 2','start','lbls')+
+      `<rect x="400" y="76" width="34" height="52" class="gone"/>`+
+      R(340,70,60,6,'metal')+R(400,70,34,74,'metal')+
+      R(370,150,160,16,'film')+R(396,144,48,6,'metal')+
+      L(417,40,417,68)+T(417,34,'노치 안의 도전재','middle')+
+      L(436,100,470,100)+T(474,98,'점선 = 노치 밖','start','lbls')+T(474,112,'기판 가장자리','start','lbls')+
+      T(350,64,'패드','middle','lbls')+T(450,186,'인쇄회로 (아래)','middle','lbls'))},
+  multi956:{grp:'in',name:'여러 층을 이어 뚫음',sub:'956 청구항 20',
+    v:'IN',vc:'p-in',rule:'F-1 · G-8 (기판이 남아 기판 없음 아님)',pat:'KR 10-2932956 · 청구항 20 (제조 방법)',
+    q:'"상기 박막 트랜지스터층의 타측 및 상기 제2 기판의 타측에 제2 관통홀을 형성 … 신호 라인을 형성 … 상기 제1 기판을 제거 … 상기 제2 관통홀에 삽입된 신호 라인이 노출되도록 상기 제2 기판의 타측 하단의 일부를 제거"',
+    why:'관통홀이 TFT층과 제2 기판을 함께 지나갑니다. 제1 기판은 떼어내지만 제2 기판이 남아 관통되므로 IN입니다.',
+    d:()=>svg(
+      R(30,50,500,30,'tft')+T(40,70,'TFT층')+
+      R(30,80,500,32,'sub')+T(40,101,'제2 기판')+
+      R(60,46,440,5,'metal')+R(60,50,16,62,'metal')+R(484,50,16,62,'metal')+
+      `<rect x="30" y="112" width="500" height="26" class="gone"/>`+T(280,130,'제1 기판 (제거)','middle','lbls')+
+      L(492,20,492,46)+T(492,16,'제2 관통홀','middle')+L(68,20,68,46)+T(68,16,'제1 관통홀','middle'))},
+  inter:{grp:'in',name:'유리 인터포저 (일반 예)',sub:'인터포저 태그',
+    v:'IN + 인터포저',vc:'p-in',rule:'F-1 · T2 인터포저',pat:'일반 개념도 (특정 특허 아님)',
+    q:'유리 코어를 관통하는 비아(TGV)로 위쪽 칩과 아래쪽 기판을 잇는 구조',
+    why:'구조는 표시 기판 관통과 같고 분야만 반도체입니다. 애매하면 글라스 인터포저 제품 태그를 달아 남깁니다.',
+    d:()=>svg(
+      R(110,30,120,30,'chip')+R(310,30,140,30,'chip')+T(170,50,'칩','middle')+T(380,50,'칩','middle')+
+      R(60,64,440,8,'ins')+T(510,72,'RDL','start','lbls')+
+      R(60,72,440,50,'sub')+T(70,101,'유리 코어')+
+      [150,200,330,380,430].map(x=>R(x,72,12,50,'metal')).join('')+
+      R(60,122,440,8,'ins')+
+      [120,180,240,300,360,420].map(x=>`<circle cx="${x}" cy="138" r="6" class="metal"/>`).join('')+
+      R(40,146,480,20,'film')+T(280,190,'패키지 기판','middle','lbls')+
+      L(156,30,200,14)+T(204,16,'TGV','start'))},
+  side330:{grp:'ex',name:'측면 배선',sub:'330 · 023',
+    v:'제외 · 우회형',vc:'p-ex',rule:'제외 규칙 · 우회형 (관통 개념 없음)',pat:'KR 10-3033330 · KR 10-3003023 (요약 기준)',
+    q:'"복수의 전면 데이터 패드 … 상기 기판의 상기 제2면 아래에 위치하는 복수의 배면 데이터 패드 … 제1 전면 데이터 패드와 … 제1 배면 데이터 패드를 전기적으로 연결하는 제1 측면 배선" (330)',
+    why:'기판을 뚫지 않고 옆면을 돌아 앞뒤 패드를 잇습니다. 목적은 같아도 관통 개념이 없으므로 제외 규칙(우회형)으로 빠집니다.',
+    d:()=>svg(
+      R(30,60,380,26,'tft')+T(40,78,'화소층')+
+      Pth('M30 86 L440 86 L452 98 L452 140 L440 152 L30 152 Z','sub')+T(40,124,'기판')+
+      R(400,80,40,6,'metal')+R(400,152,40,6,'metal')+
+      Pth('M420 83 L444 83 L456 97 L456 141 L444 155 L420 155','wire')+
+      L(456,118,490,118)+T(494,122,'측면 배선','start')+
+      T(420,72,'전면 패드','middle','lbls')+T(420,176,'배면 패드','middle','lbls')+T(470,98,'모따기면 (023)','start','lbls'))},
+  wrap124:{grp:'ex',name:'가장자리 감싸기',sub:'124 청구항 6',
+    v:'제외 · 우회형',vc:'p-ex',rule:'제외 규칙 · 우회형 (관통 개념 없음)',pat:'US 9,504,124 · 청구항 6',
+    q:'"conductive connector structures that couple the conductive traces on the first polymer layer to the conductive traces of the printed circuit, wherein the conductive connector structures extend around an edge of the first and second polymer layers"',
+    why:'도전 구조가 폴리머층 가장자리를 감싸 돌아 뒤쪽 인쇄회로에 닿습니다. 이 청구항은 우회형으로 제외되지만, 같은 특허의 청구항 1이 관통이라 특허 자체는 대상입니다.',
+    d:()=>svg(
+      R(30,50,360,26,'tft')+T(40,68,'유기 발광층')+
+      R(30,76,400,24,'sub')+R(30,100,400,24,'sub2')+T(40,93,'폴리머층 1','start','lbls')+T(40,117,'폴리머층 2','start','lbls')+
+      R(330,72,80,5,'metal')+
+      Pth('M400 74 L440 74 L440 150 L380 150','wire')+
+      R(300,150,230,18,'film')+T(420,190,'인쇄회로 (디스플레이 뒤)','middle','lbls')+
+      L(440,110,480,110)+T(484,114,'가장자리 감싸기','start'))},
+  tft956:{grp:'ex',name:'TFT층 안의 홀만',sub:'956 청구항 1',
+    v:'EX-TFT',vc:'p-ex',rule:'F-3',pat:'KR 10-2932956 · 청구항 1',
+    q:'"상기 신호 라인은 상기 박막 트랜지스터층에 마련된 컨택홀에 삽입되어, 상기 제2 기판의 타측 하단에서 노출되는 표시 장치"',
+    why:'청구항이 명시한 홀은 TFT층 안에 있습니다. 기판을 지나간다는 말이 없으므로 이 청구항만으로는 기판 관통이 아닙니다.',
+    d:()=>svg(
+      R(70,50,460,30,'tft')+T(80,70,'TFT층')+
+      R(70,80,460,30,'sub')+T(80,100,'제2 기판')+
+      R(30,110,420,26,'sub2')+T(40,128,'제1 기판','start','lbls')+
+      R(90,46,420,5,'metal')+R(494,50,16,30,'metal')+
+      `<rect x="488" y="46" width="28" height="38" class="hl"/>`+
+      L(502,20,502,44)+T(502,16,'TFT층의 컨택홀','middle'))},
+  cam:{grp:'ex',name:'카메라 투과홀',sub:'일반 예',
+    v:'EX-CAM',vc:'p-ex',rule:'제외 · 사유 EX-CAM (명세서 근거 허용)',pat:'일반 개념도 (특정 특허 아님)',
+    q:'표시 패널을 관통하는 홀 아래에 카메라 모듈이 놓여 바깥 빛을 받는 구조',
+    why:'구조는 관통과 같지만 용도가 빛을 받는 창이라 제외됩니다. 어떤 근거로 뺐는지 EX-CAM 사유만 남깁니다. 광신호를 보내는 광 비아는 IN입니다.',
+    d:()=>svg(
+      R(30,50,200,30,'tft')+R(330,50,200,30,'tft')+T(40,70,'표시층')+
+      R(30,80,200,30,'sub')+R(330,80,200,30,'sub')+T(40,100,'기판')+
+      R(240,126,80,44,'chip')+T(280,152,'카메라','middle')+
+      Pth('M280 20 L280 120','lead')+T(290,34,'바깥 빛','start','lbls'))},
+  none375:{grp:'out',name:'기판 없음',sub:'375',
+    v:'처음부터 제외',vc:'p-ex',rule:'G-8 기판 없음',pat:'KR 10-2470375 · 요약 기준',
+    q:'"a first buffer layer; a pad part provided on one surface of the first buffer layer; … a circuit film connected to the pad part at the other surface of the first buffer layer … without applying a base substrate"',
+    why:'관통될 기판이 없고 버퍼층이 맨 아래 지지층입니다. 이런 구조는 양이 많아 처음부터 뺍니다.',
+    d:()=>svg(
+      R(30,30,500,26,'sub2')+T(40,48,'봉지 기판 (위쪽)','start','lbls')+
+      R(30,56,500,30,'tft')+T(40,76,'화소 어레이층')+
+      R(30,86,500,12,'ins')+T(540,96,'제2 버퍼층','end','lbls')+
+      R(330,98,90,8,'metal')+R(30,106,500,12,'ins')+T(540,116,'제1 버퍼층','end','lbls')+
+      R(350,118,60,8,'metal')+R(300,126,180,16,'film')+
+      `<rect x="30" y="150" width="500" height="22" class="gone"/>`+T(280,166,'기판 없음','middle','lbls')+
+      T(390,196,'회로 필름','middle','lbls'))}
+  };
+  const groups=[['in','IN · 관통'],['ex','제외 규칙'],['out','처음부터 제외']];
+  const casesEl=document.getElementById('cases'), view=document.getElementById('view');
+  casesEl.innerHTML=groups.map(([g,l])=>`<div class="grp"><div class="gl">${l}</div>${Object.entries(C).filter(([,c])=>c.grp===g).map(([k,c])=>`<button type="button" id="b-${k}" data-k="${k}" aria-pressed="false">${c.name}<small>${c.sub}</small></button>`).join('')}</div>`).join('');
+  const legend=`<div class="legend"><span><i style="background:var(--c-sub)"></i>기판</span><span><i style="background:var(--c-tft)"></i>TFT·표시층</span><span><i style="background:var(--c-metal)"></i>금속 (배선·패드·비아)</span><span><i style="background:var(--c-film)"></i>회로필름·구동기판</span><span><i style="background:var(--c-ins)"></i>절연·버퍼층</span></div>`;
+  function show(k){
+    const c=C[k]; if(!c) return;
+    casesEl.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k?'true':'false'));
+    view.innerHTML=`<div class="vhead"><strong>${c.name}</strong><span class="pill ${c.vc}">${c.v}</span></div>`+
+      `<div class="vmeta">${c.pat} · 규칙 ${c.rule}</div>`+c.d()+legend+
+      `<div class="vquote">${c.q}</div><p class="vwhy">${c.why}</p>`;
+  }
+  casesEl.addEventListener('click',e=>{const b=e.target.closest('button'); if(b) show(b.dataset.k);});
+  show('open843');
+})();
+</script>
+<script>
+(function(){
+  function openTo(id){const el=document.getElementById(id); if(!el) return; let d=el.closest('details'); while(d){d.open=true; d=d.parentElement.closest('details');}}
+  document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]'); if(a) openTo(a.getAttribute('href').slice(1));});
+  if(location.hash) openTo(location.hash.slice(1));
+})();
+</script>
+<script>
+(function(){
+  /* 섹션 진행 표시 */
+  const PG=[['1','기판','var(--k-mat)'],['2','관통','var(--k-str)'],['3','제외 규칙','var(--k-ex)'],['4','태그','var(--k-t2)']];
+  document.querySelectorAll('.prog').forEach(el=>{const c=el.dataset.cur;
+    el.innerHTML=PG.map(([n,l,k])=>`<span class="${n===c?'cur':''}" style="--kc:${k}"><span class="no4">${n}</span>${l}</span>`).join('');});
+
+  /* 태그 필터 + 프리셋 단추 */
+  const D=[
+    {n:'843',k:['관통 + 부품 실장'],m:'기판',f:'디스플레이',p:'',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'785',k:['관통 + 부품 실장'],m:'기판',f:'디스플레이',p:'',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'711',k:['관통 + 부품 실장'],m:'플라스틱·유리',f:'디스플레이',p:'PO',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'124',k:['관통 + 부품 실장'],m:'플라스틱',f:'디스플레이',p:'PO',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'956',k:['관통 연결만'],m:'기판',f:'디스플레이',p:'타일드',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'792',k:['관통 + 부품 실장'],m:'기판',f:'디스플레이',p:'타일드',g:'베젤 축소·벤딩부 제거',ex:''},
+    {n:'인터포저 예',k:['관통 + 부품 실장'],m:'유리',f:'반도체',p:'글라스 인터포저',g:'미세피치·고밀도 연결',ex:''},
+    {n:'CPO 예',k:['관통 + 부품 실장'],m:'유리',f:'반도체',p:'CPO',g:'미세피치·고밀도 연결',ex:''},
+    {n:'330',k:[],m:'기판',f:'디스플레이',p:'',g:'',ex:'우회형'},
+    {n:'023',k:[],m:'기판',f:'디스플레이',p:'타일드',g:'',ex:'우회형'},
+    {n:'카메라홀 예',k:[],m:'기판',f:'디스플레이',p:'',g:'',ex:'카메라홀'},
+    {n:'LCD 예',k:[],m:'유리',f:'디스플레이',p:'',g:'',ex:'LCD'}
+  ];
+  const F=['디스플레이','반도체','센서·기타'], PR=['(없음)','PO','GA','타일드','마이크로LED','투명','글라스 인터포저','유리 코어 기판','CPO'], G=['베젤 축소·벤딩부 제거','미세피치·고밀도 연결','신호 경로 단축'];
+  const KM=['관통 연결만','관통 + 부품 실장'];
+  const st={f:new Set(F),p:new Set(PR),g:new Set(G),k:new Set(KM)};
+  const box=(id,arr,key)=>{document.getElementById(id).innerHTML=arr.map((v,i)=>`<label><input type="checkbox" id="${key}-${i}" data-key="${key}" value="${v}" checked> ${v}</label>`).join(' ');};
+  box('f1',F,'f'); box('f2',PR,'p'); box('f3',G,'g'); box('f4',KM,'k');
+  const PRE={'전체 보기':{f:F,p:PR,g:G,k:KM},'디스플레이만':{f:['디스플레이'],p:PR,g:G,k:KM},'반도체만':{f:['반도체'],p:PR,g:G,k:KM},'타일드만':{f:F,p:['타일드'],g:G,k:KM},'벤딩부 제거 목적만':{f:F,p:PR,g:['베젤 축소·벤딩부 제거'],k:KM},'부품 실장 있음만':{f:F,p:PR,g:G,k:['관통 + 부품 실장']}};
+  const pre=document.getElementById('pre');
+  pre.innerHTML=Object.keys(PRE).map(k=>`<button type="button" data-k="${k}" aria-pressed="${k==='전체 보기'}">${k}</button>`).join('');
+  function sync(){document.querySelectorAll('.fbox input').forEach(i=>{i.checked=st[i.dataset.key].has(i.value);});}
+  function run(){
+    const s=k=>[...st[k]].join(', ')||'선택 없음';
+    document.getElementById('ff').textContent=`보기: 제외 빼고 · 분야 = ${s('f')} · 제품 = ${s('p')} · 목적 = ${s('g')} · 구조 = ${s('k')}`;
+    let n=0;
+    document.getElementById('fl').innerHTML=D.map(d=>{
+      const out=!!d.ex||!st.f.has(d.f)||!st.p.has(d.p||'(없음)')||!st.g.has(d.g)||!(d.k.length?d.k.some(x=>st.k.has(x)):st.k.has('(없음)')); if(!out)n++;
+      const ch=(c,v)=>v?`<span class="chip" style="--kc:${c}">${v}</span>`:'';
+      const tags=ch('var(--k-mat)',d.m)+ch('var(--k-t1)',d.f)+ch('var(--k-t2)',d.p)+ch('var(--k-t3)',d.g)+d.k.map(x=>ch('var(--k-t4)',x)).join('')+(d.ex?ch('var(--k-ex)','⊘ 제외: '+d.ex):'');
+      return `<div class="${out?'out':''}"><b>${d.n}</b>${tags}</div>`;}).join('');
+    document.getElementById('fc').textContent=`남은 특허 ${n}건 / 전체 ${D.length}건 (제외 ${D.filter(d=>d.ex).length}건은 항상 빠짐)`;
+  }
+  pre.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return; const p=PRE[b.dataset.k];
+    st.f=new Set(p.f); st.p=new Set(p.p); st.g=new Set(p.g); st.k=new Set(p.k); sync(); run();
+    pre.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));});
+  document.querySelector('.fbox').addEventListener('change',e=>{const i=e.target; if(!i.dataset.key) return; i.checked?st[i.dataset.key].add(i.value):st[i.dataset.key].delete(i.value);
+    pre.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false')); run();});
+  run();
+})();
+</script>
+
+</html>
