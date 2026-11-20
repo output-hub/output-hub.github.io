@@ -456,7 +456,7 @@ details.sec{box-shadow:var(--sh)}
 <tr><td>P-f 두께방향 중첩</td><td>컨택홀들이 두께 방향으로 중첩</td><td>080, 435</td></tr>
 </tbody></table></div>
 <div class="rulebox"><b>맥락으로 판정하는 경우</b> 청구항에 '기판 관통'이라는 말이 없어도, 구조상 기판을 지나 반대편과 금속으로 이어지면 TGV로 봅니다.
-<ul><li><b>패널 컨택홀 + 아래 금속 기판:</b> 패널의 컨택홀에 도전재를 채워 패널 아래 금속 기판과 패드를 연결 (예: LGD 10-2578350, 10-2020-0062510)</li><li><b>패널 아래 지지 플레이트:</b> 플레이트 홀의 배선이 패널 신호를 회로기판으로 연결 (예: SDC 10-2026-0024506)</li></ul></div>
+<ul><li><b>패널 컨택홀 + 아래 금속 기판:</b> 패널의 컨택홀에 도전재를 채워 패널 아래 금속 기판과 패드를 연결 (예: LGD 10-2578350, 10-2020-0062510)</li><li><b>종속항에서 관통을 한정:</b> 독립항에는 유리 기판만 있고, 종속항에서 그 유리를 관통하는 비아(through-glass via)로 구동 IC와 연결 (예: Apple US 12,326,760 — 지지 유리 200을 via 206이 관통). 독립항 검색에 더해 <b>전체 청구항</b>에서도 TGV 단어를 찾습니다.</li><li><b>패널 아래 지지 플레이트:</b> 플레이트 홀의 배선이 패널 신호를 회로기판으로 연결 (예: SDC 10-2026-0024506)</li></ul></div>
 <p class="conclude"><b>검색 방식의 결론:</b> 위 6개 패턴 중 하나만 들어 있어도 걸리도록, 패턴마다 빠질 수 없는 단어로 검색 블록을 하나씩 만들고 결과를 모두 합칩니다. 한국 특허(독립항 필드) 검색식 초안은 아래와 같습니다.</p>
 <div class="kw" style="--kc:var(--k-str)">
   <div class="kwr"><div class="kwl">홀류<small>공통</small></div><code>오픈부 개구* 개구홀 컨택홀 콘택홀 (컨택 ADJ 홀) (콘택 ADJ 홀) 관통홀 (관통 ADJ 홀) 비아홀 (비아 ADJ 홀) 홀</code></div>
@@ -637,9 +637,9 @@ details.sec{box-shadow:var(--sh)}
 <div class="fnr"><div class="fnl">1 기판</div><div class="fnb"><span style="width:77%;background:var(--k-mat)"></span></div><div class="fnn">6,301</div><div class="fnt">독립항에 substrate·glass·polymer 등</div></div>
 <div class="fnr"><div class="fnl">1 × 2 관통</div><div class="fnb"><span style="width:55%;background:var(--k-mat)"></span></div><div class="fnn">536</div><div class="fnt">관통 블록 U1~U3 + 금속 연결</div></div>
 <div class="fnr"><div class="fnl">3 제외 · 검색식</div><div class="fnb"><span style="width:52%;background:var(--k-mat)"></span></div><div class="fnn">332</div><div class="fnt">노이즈 단어·기판 아닌 층 관통을 검색식으로 제외</div></div>
-<div class="fnr"><div class="fnl"><b>3 제외 · 판독</b></div><div class="fnb"><span style="width:32%;background:var(--k-t4)"></span></div><div class="fnn"><b>11</b><span class="dc" style="font-size:11px;color:var(--muted)"> (38)</span></div><div class="fnt">독립항을 한 건씩 읽어 같은 규칙으로 더 벌 (TGV 35 + 경계 3) = <b>최종 모수</b> · 패밀리(문헌)</div></div>
+<div class="fnr"><div class="fnl"><b>3 제외 · 판독</b></div><div class="fnb"><span style="width:32%;background:var(--k-t4)"></span></div><div class="fnn"><b>11</b><span class="dc" style="font-size:11px;color:var(--muted)"> (39)</span></div><div class="fnt">독립항을 한 건씩 읽어 같은 규칙으로 더 벌 (TGV 36 + 경계 3, 종속항 TGV 1건 포함) = <b>최종 모수</b> · 패밀리(문헌)</div></div>
 </div>
-<p class="note">분석 모수 합계 <b>849건</b> (SDC 379 · LGD 138 · Apple 332) = 위 그래프에서 1 기판 → 2 관통 → 3 제외(검색식)까지 거친 수. 이 849건을 한 건씩 판독해 남은 <b>최종 모수는 132개 패밀리</b>(문헌 214건) — SDC 102(150) · LGD 19(26) · Apple 11(38)입니다.</p>
+<p class="note">분석 모수 합계 <b>849건</b> (SDC 379 · LGD 138 · Apple 332) = 위 그래프에서 1 기판 → 2 관통 → 3 제외(검색식)까지 거친 수. 이 849건을 한 건씩 판독해 남은 <b>최종 모수는 132개 패밀리</b>(문헌 215건) — SDC 102(150) · LGD 19(26) · Apple 11(39)입니다.</p>
 <h3>2-2 판정 결과 (태그)</h3>
 <div class="tgvdef">
 <div class="tgvh"><span class="chip tgv">TGV</span> 이 분석에서 TGV를 이렇게 판별했습니다</div>
@@ -651,9 +651,9 @@ details.sec{box-shadow:var(--sh)}
 <div class="tbl rt ft"><table>
 <thead><tr><th>필터</th><th>SDC</th><th>LGD</th><th>Apple</th></tr></thead>
 <tbody>
-<tr class="l0"><td>최종 모수 <span class='m'>TGV + 경계</span></td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(38)</span></td></tr>
-<tr class="l1 sum"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span></td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(35)</span></td></tr>
-<tr class="l2"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>56</b> <span class="dc">(79)</span></td><td><b>9</b> <span class="dc">(13)</span></td><td><b>7</b> <span class="dc">(21)</span></td></tr>
+<tr class="l0"><td>최종 모수 <span class='m'>TGV + 경계</span></td><td><b>102</b> <span class="dc">(150)</span></td><td><b>19</b> <span class="dc">(26)</span></td><td><b>11</b> <span class="dc">(39)</span></td></tr>
+<tr class="l1 sum"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span></td><td><b>98</b> <span class="dc">(144)</span></td><td><b>15</b> <span class="dc">(22)</span></td><td><b>10</b> <span class="dc">(36)</span></td></tr>
+<tr class="l2"><td><span class='ar'>▼</span><span class="chip tgv">TGV</span><span class="and">and</span><span class="chip" style="--kc:var(--k-t4)">부품 실장</span></td><td><b>56</b> <span class="dc">(79)</span></td><td><b>9</b> <span class="dc">(13)</span></td><td><b>7</b> <span class="dc">(22)</span></td></tr>
 <tr class="gap"><td colspan="4">TGV가 아닌 것</td></tr>
 <tr class="lx"><td><span class="chip" style="--kc:var(--muted)">경계</span> <span class='m'>최종 모수 − TGV · 사용자 직접 검토</span></td><td><b>4</b> <span class="dc">(6)</span></td><td><b>4</b> <span class="dc">(4)</span></td><td><b>1</b> <span class="dc">(3)</span></td></tr>
 <tr class="gap"><td colspan="4"><span class="chip" style="--kc:var(--k-str)">1차 보고</span> 사용자가 직접 고른 특허와 대조 · 문헌(패밀리)</td></tr>
